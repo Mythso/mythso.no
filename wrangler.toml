@@ -1,0 +1,12 @@
+name = "webhuset-mcp-oauth-proxy"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# Secrets (set with `wrangler secret put <NAME>`, do not put values here):
+#   UPSTREAM_AUTH_HEADER  -> e.g. "Bearer whk_live_..."
+#   SIGNING_SECRET        -> random string, used to sign issued tokens/codes
+#   GATE_PASSWORD         -> password required to complete the OAuth login step
+#
+# Plain vars (safe to keep here):
+[vars]
+UPSTREAM_MCP_URL = "https://mcp.webhuset.no/mcp/v1"

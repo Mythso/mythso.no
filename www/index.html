@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portefølje</title>
+  <meta name="description" content="Personlig side med lenker, prosjekter og publisering.">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0b0c10">
+  <meta name="theme-color" content="#0b0c10">
+
+  <style>
+    :root{
+      --bg:#0b0c10; --panel:#111218; --text:#e8eaed; --muted:#9aa0a6;
+      --brand:#5b8def; --brand2:#7af0b6; --r:16px; --border:rgba(255,255,255,.10); --panel-2:rgba(255,255,255,.04);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{
+      margin:0; min-height:100%;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial; color:var(--text);
+      background:
+        radial-gradient(140vmax 95vmax at 20% -10%, rgba(91,141,239,.18), transparent 40%),
+        radial-gradient(110vmax 70vmax at 90% 0%,   rgba(122,240,182,.10), transparent 40%),
+        var(--bg);
+      background-attachment: fixed, fixed, scroll; background-repeat:no-repeat;
+    }
+    .wrap{width:min(960px,92%);margin:0 auto}
+    .nav{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-weight:700}
+    .logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand2))}
+    .links{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--text);border:1px solid var(--border);background:var(--panel-2);transition:transform .12s ease,background .12s ease,border-color .12s ease}
+    .btn:active{transform:translateY(1px)} .btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+    .menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid var(--border);background:var(--panel-2);color:var(--text)}
+    .menu-icon{position:relative;width:22px;height:14px;display:inline-block}
+    .menu-icon span{position:absolute;left:0;right:0;height:2px;background:var(--text);border-radius:2px}
+    .menu-icon span:nth-child(1){top:0}.menu-icon span:nth-child(2){top:6px}.menu-icon span:nth-child(3){bottom:0}
+    .mobile-panel{display:none;position:relative;background:var(--panel);border-bottom:1px solid rgba(255,255,255,.06)}
+    .mobile-panel .links{padding:12px;gap:10px;flex-direction:column;align-items:stretch}.mobile-panel .btn{width:100%;justify-content:center}
+    @media (max-width:760px){.menu-btn{display:inline-flex}.links.desktop{display:none}.mobile-panel.open{display:block}}
+
+    main{padding:56px 0}
+    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:18px}
+    h1{font-size:clamp(28px,5vw,44px);margin:.4em 0 .2em}
+    .muted{color:var(--muted)} section{margin-top:28px} h2{margin:0 0 6px;font-size:22px}
+    ul{margin:0;padding-left:18px}.list a{color:var(--text);opacity:.9}
+    .avatar{aspect-ratio:1/1;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#0d0f15}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .hidden{display:none!important}
+  </style>
+
+  <script src="/config.js"></script>
+  <script src="/common.js"></script>
+</head>
+<body>
+  <main class="wrap" id="top">
+    <div class="grid">
+      <div class="card">
+        <div class="avatar hidden" id="avatarBox" style="margin-bottom:12px">
+          <img id="avatarImg" alt="Profilbilde">
+        </div>
+        <h1 id="name">&nbsp;</h1>
+        <p class="muted" id="desc">&nbsp;</p>
+        <div class="links" id="cta"></div>
+      </div>
+
+      <div class="card hidden" id="publishedBox">
+        <h2>Publisert</h2>
+        <p class="muted">Saker / omtale</p>
+        <ul class="list" id="publishedList"></ul>
+      </div>
+    </div>
+
+    <section class="card hidden" id="projectsBox">
+      <h2>Prosjekter</h2>
+      <ul class="list" id="projectsList"></ul>
+    </section>
+  </main>
+
+<script>
+  /* Side-spesifikk logikk for index */
+  function isNonEmptyStr(v){return typeof v==='string' && v.trim()!==''}
+  function toArrayMaybeCSV(val){ if(Array.isArray(val)) return val; if(isNonEmptyStr(val)) return val.split(',').map(s=>s.trim()).filter(Boolean); return [] }
+  function normalizeUrl(u){
+    if(!isNonEmptyStr(u)) return '';
+    if(u.startsWith('/') || u.startsWith('./')) return u;
+    if(/^https?:\/\//i.test(u)) return u;
+    if(/^[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(u)) return 'https://' + u;
+    return u;
+  }
+  function titleToSlug(name){
+    return name
+      .replace(/Æ/g,'Ae').replace(/Ø/g,'O').replace(/Å/g,'A')
+      .replace(/æ/g,'ae').replace(/ø/g,'o').replace(/å/g,'a')
+      .replace(/\s+/g,'_').replace(/[^A-Za-z0-9_]/g,'');
+  }
+  function getConfig(){ return (window.siteConfig && typeof window.siteConfig==='object') ? window.siteConfig : {} }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // injiser felles header/footer
+    window.renderChrome?.();
+
+    const c = getConfig();
+    document.title = (c.my_name ? c.my_name + ' – ' : '') + 'Portefølje';
+
+    if(isNonEmptyStr(c.my_name)) document.getElementById('name').textContent = c.my_name;
+    if(isNonEmptyStr(c.my_description)) document.getElementById('desc').textContent = c.my_description;
+    else document.getElementById('desc').classList.add('hidden');
+
+    // bilde
+    if(isNonEmptyStr(c.linkedin_profile_pic_url)){
+      const img=document.getElementById('avatarImg');
+      img.src=normalizeUrl(c.linkedin_profile_pic_url);
+      img.referrerPolicy='no-referrer';
+      img.addEventListener('load',()=>document.getElementById('avatarBox').classList.remove('hidden'));
+      img.addEventListener('error',()=>document.getElementById('avatarBox').classList.add('hidden'));
+    }
+
+    // Publisert
+    const pubs=[c.published_url, ...(Array.isArray(c.published_urls)?c.published_urls:[])].filter(isNonEmptyStr).map(normalizeUrl);
+    if(pubs.length){
+      const ul=document.getElementById('publishedList');
+      pubs.forEach(u=>{ const li=document.createElement('li'); const a=document.createElement('a'); a.href=u; a.target='_blank'; a.rel='noopener'; a.textContent=u; li.appendChild(a); ul.appendChild(li); });
+      document.getElementById('publishedBox').classList.remove('hidden');
+    }
+
+    // Prosjekter
+    const raw=[c.project_url, ...(Array.isArray(c.project_urls)?c.project_urls:[])].filter(isNonEmptyStr);
+    if(raw.length){
+      const ul=document.getElementById('projectsList');
+      raw.forEach(item=>{
+        const looksUrl=/^https?:\/\//i.test(item)||/^[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(item)||item.startsWith('/')||item.startsWith('./');
+        const url = looksUrl ? normalizeUrl(item) : '/' + titleToSlug(item);
+        const title = looksUrl ? item.replace(/^https?:\/\/(www\.)?/i,'').replace(/\/$/,'') : item;
+        const li=document.createElement('li'); const a=document.createElement('a'); a.href=url; a.textContent=title; li.appendChild(a); ul.appendChild(li);
+      });
+      document.getElementById('projectsBox').classList.remove('hidden');
+    }
+  });
+</script>
+</body>
+</html>

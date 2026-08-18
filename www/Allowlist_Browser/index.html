@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prosjekt</title>
+  <meta name="description" content="Prosjektdetaljer">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0b0c10">
+  <meta name="theme-color" content="#0b0c10">
+
+  <style>
+    :root { --bg:#0b0c10; --panel:#111218; --text:#e8eaed; --muted:#9aa0a6; --brand:#5b8def; --brand2:#7af0b6; --r:16px; --border:rgba(255,255,255,.10); --panel-2:rgba(255,255,255,.04); }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{
+      margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial;color:var(--text);
+      background:
+        radial-gradient(140vmax 95vmax at 20% -10%, rgba(91,141,239,.18), transparent 40%),
+        radial-gradient(110vmax 70vmax at 90% 0%,   rgba(122,240,182,.10), transparent 40%),
+        var(--bg);
+      background-attachment: fixed, fixed, scroll; background-repeat:no-repeat;
+    }
+    .wrap{width:min(900px,92%);margin:0 auto;padding:28px 0 60px}
+    a{color:var(--text)}
+    .card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:18px}
+    h1{font-size:clamp(28px,5vw,40px);margin:.2em 0}
+    .muted{color:var(--muted)}
+    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--text);border:1px solid var(--border);background:var(--panel-2)}
+    section{margin-top:22px}
+  </style>
+
+  <script src="/config.js"></script>
+  <script src="/common.js"></script>
+</head>
+<body>
+  <main class="wrap">
+    <article class="card">
+      <h1 id="title">Prosjektnavn</h1>
+      <p class="muted" id="intro"></p>
+      <div class="links" id="actions"></div>
+    </article>
+
+    <section id="content"></section>
+  </main>
+
+<script>
+  function isNonEmptyStr(v){return typeof v==='string' && v.trim()!==''}
+  function normalizeUrl(u){
+    if(!isNonEmptyStr(u)) return '';
+    if(/^https?:\/\//i.test(u)) return u;
+    if(u.startsWith('/') || u.startsWith('./')) return u;
+    return u;
+  }
+  function getSlugFromPath(){
+    const parts = location.pathname.replace(/\/+$/,'').split('/');
+    return parts[parts.length-1] || parts[parts.length-2] || '';
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Felles header/footer
+    window.renderChrome?.();
+
+    const cfg = (window.siteConfig && Array.isArray(window.siteConfig.projects)) ? window.siteConfig.projects : [];
+    const slug = getSlugFromPath();
+
+    const proj = cfg.find(p =>
+      (p.slug===slug) ||
+      (p.url===location.pathname) ||
+      (p.title && p.title.replace(/\s+/g,'_')===slug)
+    );
+
+    const titleEl = document.getElementById('title');
+    const introEl = document.getElementById('intro');
+    const actions = document.getElementById('actions');
+    const content = document.getElementById('content');
+
+    if(!proj){
+      titleEl.textContent = slug || 'Prosjekt';
+      introEl.textContent = 'Ingen detaljer funnet i config.js for denne siden.';
+      return;
+    }
+
+    document.title = (proj.title || 'Prosjekt') + ' – mythso';
+    titleEl.textContent = proj.title || slug;
+    if(isNonEmptyStr(proj.intro)) introEl.textContent = proj.intro; else introEl.remove();
+
+    (proj.links||[]).forEach(l=>{
+      if(isNonEmptyStr(l?.label) && isNonEmptyStr(l?.href)){
+        const a=document.createElement('a');
+        a.className='btn'; a.href=normalizeUrl(l.href); a.target='_blank'; a.rel='noopener'; a.textContent=l.label;
+        actions.appendChild(a);
+      }
+    });
+
+    (proj.sections||[]).forEach(s=>{
+      const sec=document.createElement('section'); sec.className='card';
+      if(isNonEmptyStr(s.heading)){ const h=document.createElement('h2'); h.textContent=s.heading; sec.appendChild(h); }
+      if(isNonEmptyStr(s.text)){ const p=document.createElement('p'); p.textContent=s.text; sec.appendChild(p); }
+      if(isNonEmptyStr(s.html)){ const div=document.createElement('div'); div.innerHTML=s.html; sec.appendChild(div); }
+      content.appendChild(sec);
+    });
+  });
+</script>
+</body>
+</html>

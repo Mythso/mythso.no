@@ -1,0 +1,5 @@
+[Thu Aug 13 02:54:12.451226 2026] [core:error] [pid 189929:tid 139816947672832] [client 34.138.170.152:41634] AH00126: Invalid URI in request GET /@fs/../../.env?raw?? HTTP/1.1
+[Thu Aug 13 02:54:19.065871 2026] [core:error] [pid 190464:tid 139819833190144] [client 34.138.170.152:42098] AH00126: Invalid URI in request GET /@fs/../../../../../proc/self/environ?raw?? HTTP/1.1
+[Thu Aug 13 02:54:19.067188 2026] [core:error] [pid 377315:tid 139818784757504] [client 34.138.170.152:42094] AH00126: Invalid URI in request GET /@fs/../../../../../app/.env?raw?? HTTP/1.1
+[Thu Aug 13 02:54:19.068850 2026] [core:error] [pid 190464:tid 139820009436928] [client 34.138.170.152:42100] AH00126: Invalid URI in request GET /@fs/../../../../../root/.env?raw?? HTTP/1.1
+[Thu Aug 13 02:55:06.911100 2026] [core:error] [pid 377315:tid 139819053192960] [client 34.138.170.152:41110] AH00126: Invalid URI in request GET /assets../../../.env HTTP/1.1

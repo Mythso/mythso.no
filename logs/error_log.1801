@@ -1,1 +1,0 @@
-[Sat Aug 15 18:28:51.983885 2026] [authz_core:error] [pid 2950339:tid 140498597517056] [client 185.177.72.13:22560] AH01630: client denied by server configuration: /home/M/mythsono/www/.htpasswd.bak

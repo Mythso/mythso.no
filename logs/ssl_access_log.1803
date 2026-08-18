@@ -1,7 +1,0 @@
-104.200.76.82 - - [16/Aug/2026:01:46:54 +0200] "HEAD / HTTP/1.1" 200 - "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1 RDDocuments/8.4.8.940"
-104.200.76.82 - - [16/Aug/2026:01:46:55 +0200] "GET / HTTP/1.1" 200 7587 "-" "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1 RDDocuments/8.4.8.940"
-104.165.105.43 - - [16/Aug/2026:02:00:21 +0200] "GET / HTTP/1.1" 200 7587 "-" "Mozilla/5.0 (compatible; Konqueror/3; Linux)"
-104.165.105.43 - - [16/Aug/2026:02:00:22 +0200] "GET /robots.txt HTTP/1.1" 404 196 "https://mythso-no.datasenter.no/" "Mozilla/5.0 (compatible; Konqueror/3; Linux)"
-104.165.105.43 - - [16/Aug/2026:02:00:22 +0200] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (compatible; Konqueror/3; Linux)"
-74.7.241.30 - - [16/Aug/2026:02:17:56 +0200] "GET / HTTP/1.1" 200 7587 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.4; +https://openai.com/gptbot)"
-74.7.241.181 - - [16/Aug/2026:02:17:56 +0200] "GET /robots.txt HTTP/1.1" 404 196 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36; compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot"

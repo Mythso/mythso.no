@@ -1,3 +1,0 @@
-[Thu Aug 13 21:11:20.385101 2026] [authz_core:error] [pid 1289898:tid 140498572273408] [client 45.38.17.150:50820] AH01630: client denied by server configuration: /home/M/mythsono/www/wp-json
-[Thu Aug 13 21:11:21.262322 2026] [authz_core:error] [pid 1289898:tid 140498740127488] [client 45.38.17.150:50895] AH01630: client denied by server configuration: /home/M/mythsono/www/
-[Thu Aug 13 21:11:22.144138 2026] [authz_core:error] [pid 1289898:tid 140498927122176] [client 45.38.17.150:50971] AH01630: client denied by server configuration: /home/M/mythsono/www/

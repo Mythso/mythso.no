@@ -1,2 +1,0 @@
-[Mon Aug 17 12:53:08.262619 2026] [ssl:error] [pid 3115658:tid 140498731734784] [client 199.45.154.73:48366] AH02032: Hostname linweb22.hmg9.webhuset.no (default host as no SNI was provided) and hostname mythso.no provided via HTTP have no compatible SSL setup for policy 'authonly'
-[Mon Aug 17 13:55:48.944074 2026] [ssl:error] [pid 3132176:tid 140498951919360] [client 66.132.172.221:46288] AH02032: Hostname linweb22.hmg9.webhuset.no (default host as no SNI was provided) and hostname www.mythso.no provided via HTTP have no compatible SSL setup for policy 'authonly'

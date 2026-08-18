@@ -1,5 +1,0 @@
-195.178.110.132 - - [13/Aug/2026:16:21:54 +0200] "GET /wp-json/gravitysmtp/v1/tests/mock-data?page=gravitysmtp-settings HTTP/1.1" 404 196 "-" "vuln_scanner/3.1.0 (CVE-2026-4020)"
-195.178.110.132 - - [13/Aug/2026:16:21:54 +0200] "GET /?rest_route=/gravitysmtp/v1/tests/mock-data&page=gravitysmtp-settings HTTP/1.1" 200 7587 "-" "vuln_scanner/3.1.0 (CVE-2026-4020)"
-195.178.110.132 - - [13/Aug/2026:16:21:54 +0200] "GET /wp-json/gravitysmtp/v1/tests/mock-data HTTP/1.1" 404 196 "-" "vuln_scanner/3.1.0 (CVE-2026-4020)"
-74.7.241.181 - - [13/Aug/2026:19:56:43 +0200] "GET /robots.txt HTTP/1.1" 404 196 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36; compatible; OAI-SearchBot/1.4; robots.txt; +https://openai.com/searchbot"
-74.7.242.1 - - [13/Aug/2026:19:56:43 +0200] "GET / HTTP/1.1" 200 7587 "-" "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.4; +https://openai.com/gptbot)"

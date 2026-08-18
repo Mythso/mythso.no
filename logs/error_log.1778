@@ -1,2 +1,0 @@
-[Tue Aug 11 21:01:04.248366 2026] [authz_core:error] [pid 3134558:tid 139818558285568] [client 8.234.160.122:46502] AH01630: client denied by server configuration: /home/M/mythsono/www/.htpasswd
-[Tue Aug 11 21:43:17.005465 2026] [authz_core:error] [pid 3134558:tid 139819489416960] [client 8.234.160.122:33808] AH01630: client denied by server configuration: /home/M/mythsono/www/.htpasswd

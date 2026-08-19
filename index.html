@@ -9,37 +9,39 @@
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0b0c10">
-  <meta name="theme-color" content="#0b0c10">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3b6fe0">
+  <meta name="theme-color" content="#ffffff">
 
   <style>
     :root{
-      --bg:#0b0c10; --panel:#111218; --text:#e8eaed; --muted:#9aa0a6;
-      --brand:#5b8def; --brand2:#7af0b6; --r:16px; --border:rgba(255,255,255,.10); --panel-2:rgba(255,255,255,.04);
+      --bg:#f7f8fb; --panel:#ffffff; --text:#161821; --muted:#667085;
+      --brand:#3b6fe0; --brand2:#2fd48a; --r:16px; --border:rgba(16,24,40,.08); --panel-2:#f3f5f9;
     }
     *{box-sizing:border-box} html{scroll-behavior:smooth}
     body{
       margin:0; min-height:100%;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial; color:var(--text);
       background:
-        radial-gradient(140vmax 95vmax at 20% -10%, rgba(91,141,239,.18), transparent 40%),
-        radial-gradient(110vmax 70vmax at 90% 0%,   rgba(122,240,182,.10), transparent 40%),
+        radial-gradient(120vmax 60vmax at 15% -10%, rgba(59,111,224,.07), transparent 45%),
+        radial-gradient(100vmax 55vmax at 100% 0%, rgba(47,212,138,.06), transparent 45%),
         var(--bg);
       background-attachment: fixed, fixed, scroll; background-repeat:no-repeat;
     }
     .wrap{width:min(960px,92%);margin:0 auto}
     .links{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;text-decoration:none;color:var(--text);border:1px solid var(--border);background:var(--panel-2);font-weight:600;font-size:14px;transition:transform .12s ease,background .12s ease,border-color .12s ease}
-    .btn:active{transform:translateY(1px)} .btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
-    .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
-    .btn.primary:hover{background:#4a7bd8}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;text-decoration:none;color:var(--text);border:1.5px solid var(--border);background:#fff;font-weight:600;font-size:14px;transition:transform .12s ease,background .12s ease,border-color .12s ease,color .12s ease}
+    .btn:active{transform:translateY(1px)} .btn:hover{background:var(--panel-2)}
+    .btn.primary{border-color:var(--brand);color:var(--brand)}
+    .btn.primary:hover{background:var(--brand);color:#fff}
 
     main{padding:56px 0}
     .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px}
     @media (max-width:900px){.grid{grid-template-columns:1fr}}
-    .card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:18px}
-    h1{font-size:clamp(28px,5vw,44px);margin:.4em 0 .2em}
-    .muted{color:var(--muted)} .tagline{color:var(--brand);font-weight:600;letter-spacing:.02em;margin:0 0 10px;font-size:15px} section{margin-top:28px} h2{margin:0 0 6px;font-size:22px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:22px;box-shadow:0 1px 3px rgba(16,24,40,.05),0 1px 2px rgba(16,24,40,.03)}
+    h1{font-size:clamp(28px,5vw,42px);margin:.2em 0 .2em}
+    .muted{color:var(--muted)}
+    .tagline{color:var(--brand);font-weight:700;letter-spacing:.02em;margin:0 0 4px;font-size:14px;text-transform:uppercase}
+    section{margin-top:28px} h2{margin:0 0 6px;font-size:22px}
     .project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:14px}
     .project-card{background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
     .project-icon{font-size:24px;line-height:1}
@@ -47,10 +49,11 @@
     .project-desc{color:var(--muted);font-size:13.5px;line-height:1.5;flex:1}
     .project-link{align-self:flex-start;font-size:13px;color:var(--brand);text-decoration:none;font-weight:600}
     .project-link:hover{text-decoration:underline}
-    ul{margin:0;padding-left:18px}.list a{color:var(--text);opacity:.9}
-    .hero-card{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+    ul{margin:0;padding-left:18px}.list a{color:var(--brand);font-weight:600;text-decoration:none}
+    .list a:hover{text-decoration:underline}
+    .hero-card{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
     .hero-text{flex:1;min-width:220px}
-    .avatar{width:92px;height:92px;flex:none;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.12);background:#0d0f15}
+    .avatar{width:clamp(120px,18vw,168px);height:clamp(120px,18vw,168px);flex:none;border-radius:50%;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 24px rgba(16,24,40,.12)}
     .avatar img{width:100%;height:100%;object-fit:cover;display:block}
     .hidden{display:none!important}
   </style>
@@ -66,8 +69,8 @@
           <img id="avatarImg" alt="Profilbilde">
         </div>
         <div class="hero-text">
-          <h1 id="name">&nbsp;</h1>
           <p class="tagline hidden" id="title">&nbsp;</p>
+          <h1 id="name">&nbsp;</h1>
           <p class="muted" id="desc">&nbsp;</p>
           <div class="links" id="cta"></div>
         </div>
@@ -132,9 +135,9 @@
       if(!isNonEmptyStr(href)) return;
       const a=document.createElement('a'); a.className='btn'+(primary?' primary':''); a.href=normalizeUrl(href); a.target='_blank'; a.rel='noopener'; a.textContent=label; cta.appendChild(a);
     }
+    addCta('Last ned CV', c.cv_url, true);
     addCta('LinkedIn', c.linkedin_url, false);
     addCta('GitHub', c.github_url, false);
-    addCta('Last ned CV', c.cv_url, true);
 
     // Publisert
     const pubs=[c.published_url, ...(Array.isArray(c.published_urls)?c.published_urls:[])].filter(isNonEmptyStr).map(normalizeUrl);

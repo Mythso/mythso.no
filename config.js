@@ -7,6 +7,45 @@ window.siteConfig = {
   github_url: "https://github.com/Mythso",
   published_url: "https://www.digi.no/tumstudio/digitalisering-og-offentlig-it/annonse-her-kan-de-bryne-seg-pa-it-rollene-du-ikke-visste-fantes/557319",
   project_urls: ["Gravid App","Allowlist Browser"],
+
+  // Utvalgte prosjekter (vises som kort på forsiden)
+  featured_projects: [
+    {
+      icon: "🛡️",
+      title: "Allowlist Browser",
+      description: "Android-nettleser som kun tillater navigasjon til domener godkjent via en CSV-styrt liste. iOS-versjon underveis.",
+      link: "/Allowlist_Browser",
+      linkLabel: "Se prosjekt →"
+    },
+    {
+      icon: "🔒",
+      title: "Cairn",
+      description: "NIS2 Compliance Engine — automatiserer etterlevelse av EUs nye cybersikkerhetsdirektiv for virksomheter.",
+      link: "https://replit.com/@mythso/NIS2-Compliance-Engine",
+      linkLabel: "Se demo →"
+    },
+    {
+      icon: "💬",
+      title: "Pulse Insight",
+      description: "Anonym sanntids trivselsmåling for ansatte, med rullerende gjennomsnitt og innebygd personvern.",
+      link: "https://replit.com/@mythso/Pulse-Insight",
+      linkLabel: "Se demo →"
+    },
+    {
+      icon: "🚗",
+      title: "GarageMonitor",
+      description: "IoT-overvåkning av garasjeanlegg (BK1/BK2), migrert fra Replit til Railway/Supabase for stabil drift.",
+      link: "",
+      linkLabel: ""
+    },
+    {
+      icon: "📡",
+      title: "AppDownStatus",
+      description: "Egen statusside-tjeneste som sporer nedetid og driftsavbrudd for apper og tjenester.",
+      link: "https://replit.com/@mythso/Service-Status-Hub",
+      linkLabel: "Se demo →"
+    }
+  ],
   cv_url: "CV_2025.pdf",
 
   // Brukes av /allowlist.html

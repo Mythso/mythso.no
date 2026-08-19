@@ -48,6 +48,13 @@
     .card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:18px}
     h1{font-size:clamp(28px,5vw,44px);margin:.4em 0 .2em}
     .muted{color:var(--muted)} .tagline{color:var(--brand);font-weight:600;letter-spacing:.02em;margin:0 0 10px;font-size:15px} section{margin-top:28px} h2{margin:0 0 6px;font-size:22px}
+    .project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:14px}
+    .project-card{background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
+    .project-icon{font-size:24px;line-height:1}
+    .project-title{font-weight:700;font-size:16px}
+    .project-desc{color:var(--muted);font-size:13.5px;line-height:1.5;flex:1}
+    .project-link{align-self:flex-start;font-size:13px;color:var(--brand);text-decoration:none;font-weight:600}
+    .project-link:hover{text-decoration:underline}
     ul{margin:0;padding-left:18px}.list a{color:var(--text);opacity:.9}
     .avatar{aspect-ratio:1/1;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#0d0f15}
     .avatar img{width:100%;height:100%;object-fit:cover;display:block}
@@ -79,7 +86,7 @@
 
     <section class="card hidden" id="projectsBox">
       <h2>Prosjekter</h2>
-      <ul class="list" id="projectsList"></ul>
+      <div class="project-grid" id="projectsList"></div>
     </section>
   </main>
 
@@ -131,15 +138,17 @@
       document.getElementById('publishedBox').classList.remove('hidden');
     }
 
-    // Prosjekter
-    const raw=[c.project_url, ...(Array.isArray(c.project_urls)?c.project_urls:[])].filter(isNonEmptyStr);
-    if(raw.length){
-      const ul=document.getElementById('projectsList');
-      raw.forEach(item=>{
-        const looksUrl=/^https?:\/\//i.test(item)||/^[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(item)||item.startsWith('/')||item.startsWith('./');
-        const url = looksUrl ? normalizeUrl(item) : '/' + titleToSlug(item);
-        const title = looksUrl ? item.replace(/^https?:\/\/(www\.)?/i,'').replace(/\/$/,'') : item;
-        const li=document.createElement('li'); const a=document.createElement('a'); a.href=url; a.textContent=title; li.appendChild(a); ul.appendChild(li);
+    // Prosjekter (kort)
+    const featured = Array.isArray(c.featured_projects) ? c.featured_projects : [];
+    if(featured.length){
+      const grid=document.getElementById('projectsList');
+      featured.forEach(p=>{
+        const card=document.createElement('div'); card.className='project-card';
+        if(isNonEmptyStr(p.icon)){ const ic=document.createElement('div'); ic.className='project-icon'; ic.textContent=p.icon; card.appendChild(ic); }
+        const t=document.createElement('div'); t.className='project-title'; t.textContent=p.title||''; card.appendChild(t);
+        if(isNonEmptyStr(p.description)){ const d=document.createElement('div'); d.className='project-desc'; d.textContent=p.description; card.appendChild(d); }
+        if(isNonEmptyStr(p.link)){ const a=document.createElement('a'); a.className='project-link'; a.href=normalizeUrl(p.link); if(/^https?:\/\//i.test(p.link)){a.target='_blank'; a.rel='noopener';} a.textContent=p.linkLabel||'Les mer →'; card.appendChild(a); }
+        grid.appendChild(card);
       });
       document.getElementById('projectsBox').classList.remove('hidden');
     }

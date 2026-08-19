@@ -22,28 +22,29 @@
 
   function renderChrome(){
     const c = getConfig();
+    const initial = (isNonEmptyStr(c.my_name) ? c.my_name.trim().charAt(0) : 'M').toUpperCase();
 
-    // ====== STYLE (namespacet til .chrome-*) ======
+    // ====== STYLE (namespacet til .chrome-*) — lyst tema ======
     const style = document.createElement('style');
     style.textContent = `
-      .chrome-header{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(160%) blur(8px);background:rgba(11,12,16,.55);border-bottom:1px solid rgba(255,255,255,.06)}
+      .chrome-header{position:sticky;top:0;z-index:1000;backdrop-filter:saturate(160%) blur(8px);background:rgba(255,255,255,.85);border-bottom:1px solid rgba(16,24,40,.06)}
       .chrome-wrap{width:min(960px,92%);margin:0 auto}
       .chrome-nav{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:12px}
-      .chrome-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#e8eaed;font-weight:700}
-      .chrome-logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#5b8def,#7af0b6)}
-      .chrome-links{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-      .chrome-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#e8eaed;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);transition:transform .12s ease,background .12s ease,border-color .12s ease}
+      .chrome-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#161821;font-weight:700}
+      .chrome-logo{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#3b6fe0,#2fd48a);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px}
+      .chrome-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+      .chrome-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;text-decoration:none;color:#161821;border:1px solid rgba(16,24,40,.10);background:#fff;font-size:14px;font-weight:600;transition:transform .12s ease,background .12s ease,border-color .12s ease}
       .chrome-btn:active{transform:translateY(1px)}
-      .chrome-btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+      .chrome-btn:hover{background:#f3f5f9;border-color:rgba(16,24,40,.18)}
 
-      .chrome-menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);color:#e8eaed}
+      .chrome-menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid rgba(16,24,40,.10);background:#fff;color:#161821}
       .chrome-menu-icon{position:relative;width:22px;height:14px;display:inline-block}
-      .chrome-menu-icon span{position:absolute;left:0;right:0;height:2px;background:#e8eaed;border-radius:2px}
+      .chrome-menu-icon span{position:absolute;left:0;right:0;height:2px;background:#161821;border-radius:2px}
       .chrome-menu-icon span:nth-child(1){top:0}
       .chrome-menu-icon span:nth-child(2){top:6px}
       .chrome-menu-icon span:nth-child(3){bottom:0}
 
-      .chrome-mobile-panel{display:none;position:relative;background:#111218;border-bottom:1px solid rgba(255,255,255,.06)}
+      .chrome-mobile-panel{display:none;position:relative;background:#fff;border-bottom:1px solid rgba(16,24,40,.06)}
       .chrome-mobile-panel .chrome-links{padding:12px;gap:10px;flex-direction:column;align-items:stretch}
       .chrome-mobile-panel .chrome-btn{width:100%;justify-content:center}
 
@@ -53,8 +54,8 @@
         .chrome-mobile-panel.chrome-open{display:block}
       }
 
-      .chrome-footer{margin-top:40px;padding:28px 0 120px;text-align:center;color:#9aa0a6}
-      .chrome-footer .chrome-pill{display:inline-block;padding:6px 10px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.04)}
+      .chrome-footer{margin-top:40px;padding:28px 0 120px;text-align:center;color:#667085}
+      .chrome-footer .chrome-pill{display:inline-block;padding:6px 10px;border:1px solid rgba(16,24,40,.10);border-radius:10px;background:#fff}
     `;
     document.head.appendChild(style);
 
@@ -64,7 +65,7 @@
     header.innerHTML = `
       <div class="chrome-wrap chrome-nav">
         <a class="chrome-brand" href="/">
-          <div class="chrome-logo" aria-hidden="true"></div>
+          <div class="chrome-logo" aria-hidden="true">${initial}</div>
           <span class="chrome-brand-name">${isNonEmptyStr(c.my_name) ? c.my_name : 'mythso'}</span>
         </a>
 

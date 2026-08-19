@@ -3,7 +3,7 @@ window.siteConfig = {
   my_description: "Liker å lære nye ting som helst kan brukes til noe fornuftig",
   my_title: "Teknologientusiast",
   linkedin_url: "https://www.linkedin.com/in/thomas-soleng",
-  linkedin_profile_pic_url: "https://media.licdn.com/dms/image/v2/D4D03AQGluRiGrsEhwQ/profile-displayphoto-shrink_800_800/B4DZZsYJxwHwAc-/0/1745574993524?e=1762387200&v=beta&t=Wz4vWxRclFGuNTu8OLCd3HEMu79LHgdpaNpVB3IQGVU",
+  linkedin_profile_pic_url: "/profile.jpg",
   github_url: "https://github.com/Mythso",
   published_url: "https://www.digi.no/tumstudio/digitalisering-og-offentlig-it/annonse-her-kan-de-bryne-seg-pa-it-rollene-du-ikke-visste-fantes/557319",
   project_urls: ["Gravid App","Allowlist Browser"],

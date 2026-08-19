@@ -28,19 +28,11 @@
       background-attachment: fixed, fixed, scroll; background-repeat:no-repeat;
     }
     .wrap{width:min(960px,92%);margin:0 auto}
-    .nav{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:12px}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-weight:700}
-    .logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand2))}
     .links{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--text);border:1px solid var(--border);background:var(--panel-2);transition:transform .12s ease,background .12s ease,border-color .12s ease}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;text-decoration:none;color:var(--text);border:1px solid var(--border);background:var(--panel-2);font-weight:600;font-size:14px;transition:transform .12s ease,background .12s ease,border-color .12s ease}
     .btn:active{transform:translateY(1px)} .btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
-    .menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid var(--border);background:var(--panel-2);color:var(--text)}
-    .menu-icon{position:relative;width:22px;height:14px;display:inline-block}
-    .menu-icon span{position:absolute;left:0;right:0;height:2px;background:var(--text);border-radius:2px}
-    .menu-icon span:nth-child(1){top:0}.menu-icon span:nth-child(2){top:6px}.menu-icon span:nth-child(3){bottom:0}
-    .mobile-panel{display:none;position:relative;background:var(--panel);border-bottom:1px solid rgba(255,255,255,.06)}
-    .mobile-panel .links{padding:12px;gap:10px;flex-direction:column;align-items:stretch}.mobile-panel .btn{width:100%;justify-content:center}
-    @media (max-width:760px){.menu-btn{display:inline-flex}.links.desktop{display:none}.mobile-panel.open{display:block}}
+    .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
+    .btn.primary:hover{background:#4a7bd8}
 
     main{padding:56px 0}
     .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px}
@@ -56,7 +48,9 @@
     .project-link{align-self:flex-start;font-size:13px;color:var(--brand);text-decoration:none;font-weight:600}
     .project-link:hover{text-decoration:underline}
     ul{margin:0;padding-left:18px}.list a{color:var(--text);opacity:.9}
-    .avatar{aspect-ratio:1/1;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#0d0f15}
+    .hero-card{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+    .hero-text{flex:1;min-width:220px}
+    .avatar{width:92px;height:92px;flex:none;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.12);background:#0d0f15}
     .avatar img{width:100%;height:100%;object-fit:cover;display:block}
     .hidden{display:none!important}
   </style>
@@ -67,14 +61,16 @@
 <body>
   <main class="wrap" id="top">
     <div class="grid">
-      <div class="card">
-        <div class="avatar hidden" id="avatarBox" style="margin-bottom:12px">
+      <div class="card hero-card">
+        <div class="avatar hidden" id="avatarBox">
           <img id="avatarImg" alt="Profilbilde">
         </div>
-        <h1 id="name">&nbsp;</h1>
-        <p class="tagline hidden" id="title">&nbsp;</p>
-        <p class="muted" id="desc">&nbsp;</p>
-        <div class="links" id="cta"></div>
+        <div class="hero-text">
+          <h1 id="name">&nbsp;</h1>
+          <p class="tagline hidden" id="title">&nbsp;</p>
+          <p class="muted" id="desc">&nbsp;</p>
+          <div class="links" id="cta"></div>
+        </div>
       </div>
 
       <div class="card hidden" id="publishedBox">
@@ -130,11 +126,26 @@
       img.addEventListener('error',()=>document.getElementById('avatarBox').classList.add('hidden'));
     }
 
+    // Handlingsknapper på kortet
+    const cta=document.getElementById('cta');
+    function addCta(label, href, primary){
+      if(!isNonEmptyStr(href)) return;
+      const a=document.createElement('a'); a.className='btn'+(primary?' primary':''); a.href=normalizeUrl(href); a.target='_blank'; a.rel='noopener'; a.textContent=label; cta.appendChild(a);
+    }
+    addCta('LinkedIn', c.linkedin_url, false);
+    addCta('GitHub', c.github_url, false);
+    addCta('Last ned CV', c.cv_url, true);
+
     // Publisert
     const pubs=[c.published_url, ...(Array.isArray(c.published_urls)?c.published_urls:[])].filter(isNonEmptyStr).map(normalizeUrl);
     if(pubs.length){
       const ul=document.getElementById('publishedList');
-      pubs.forEach(u=>{ const li=document.createElement('li'); const a=document.createElement('a'); a.href=u; a.target='_blank'; a.rel='noopener'; a.textContent=u; li.appendChild(a); ul.appendChild(li); });
+      pubs.forEach(u=>{
+        const li=document.createElement('li'); const a=document.createElement('a'); a.href=u; a.target='_blank'; a.rel='noopener';
+        let label='Les artikkelen →';
+        try{ label=new URL(u).hostname.replace(/^www\./,'') + ' – Les artikkelen →'; }catch(e){}
+        a.textContent=label; li.appendChild(a); ul.appendChild(li);
+      });
       document.getElementById('publishedBox').classList.remove('hidden');
     }
 

@@ -40,7 +40,7 @@ Lyst tema, avrundede kort med myk skygge, pille-formede knapper, rundt profilbil
 
 **For å endre navn, tittel, bilde, CV-lenke, sosiale lenker, eller legge til/fjerne prosjektkort:** rediger `config.js`. Ingen andre filer trenger å røres for vanlige innholdsendringer.
 
-Prosjektkortene på forsiden styres av `featured_projects`-arrayet, som for øyeblikket viser 9 prosjekter (TryggNett, Cairn, Medarbeiderpuls, Garasjelagportalen, AppDownStatus, Sievoo, Trend Unpacked, Sermo, OppvekstNorge):
+Prosjektkortene på forsiden styres av `featured_projects`-arrayet, som for øyeblikket viser 9 prosjekter (AppDownStatus, Sievoo, Medarbeiderpuls, TryggNett, GarasjePortalen, Cairn, Sermo, Trend Unpacked, OppvekstNorge). Lenkene peker til faktiske produksjons-URL-er der prosjektet er live og offentlig tilgjengelig (f.eks. appdownstatus.com, sievoo.com, medarbeiderpuls.no); interne/private prosjekter uten offentlig URL vises uten lenke-knapp:
 
 ```js
 featured_projects: [
@@ -69,3 +69,21 @@ featured_projects: [
 ## Historikk (kort)
 
 Siden startet som FTP-hostet statisk HTML hos Webhuset, og ble migrert til GitHub Pages for gratis, versjonskontrollert hosting. Innholdsfilene lå opprinnelig i en `/www`-undermappe (speilet fra FTP-strukturen) og ble flyttet til repo-roten for å fungere med GitHub Pages sin standard build.
+
+---
+
+## Prosjektoversikt
+
+| Prosjekt | Status | URL |
+|---|---|---|
+| AppDownStatus | Live | https://appdownstatus.com |
+| Sievoo | Live | https://sievoo.com |
+| Medarbeiderpuls | Live | https://www.medarbeiderpuls.no |
+| TryggNett | Under utvikling (mobilapp) | – |
+| GarasjePortalen | Internportal, eget domene (htgp.no) under utrulling | – |
+| Cairn | Internt/privat verktøy | – |
+| Sermo | Under utvikling (mobilapp) | – |
+| Trend Unpacked | Live | https://www.youtube.com/@trendunpacked |
+| OppvekstNorge | Domene reservert (oppvekstnorge.no), MVP under arbeid | – |
+
+_Sist synkronisert med GitHub-repoene 26. august 2026 — alle 9 prosjekter, README-er gjennomgått, utdaterte Replit-lenker fjernet til fordel for faktiske produksjons-URL-er._

@@ -17,7 +17,7 @@ mythso.no/
 ├── config.js             # ALL innholdsdata — navn, bilde, prosjekter, lenker osv.
 ├── common.js              # Delt header/footer, injiseres av alle sider via renderChrome()
 ├── profile.jpg              # Profilbilde
-├── CV_2025.pdf                # Nedlastbar CV
+├── CV_2026.pdf                # Nedlastbar CV
 ├── favicon.svg / safari-pinned-tab.svg
 ├── CNAME                        # GitHub Pages custom domain-fil (inneholder "mythso.no")
 └── Gravid_App/, statistikk/        # Statiske undersider for enkeltprosjekter
@@ -40,7 +40,7 @@ Lyst tema, avrundede kort med myk skygge, pille-formede knapper, rundt profilbil
 
 **For å endre navn, tittel, bilde, CV-lenke, sosiale lenker, eller legge til/fjerne prosjektkort:** rediger `config.js`. Ingen andre filer trenger å røres for vanlige innholdsendringer.
 
-Prosjektkortene på forsiden styres av `featured_projects`-arrayet:
+Prosjektkortene på forsiden styres av `featured_projects`-arrayet, som for øyeblikket viser 9 prosjekter (TryggNett, Cairn, Medarbeiderpuls, Garasjelagportalen, AppDownStatus, Sievoo, Trend Unpacked, Sermo, OppvekstNorge):
 
 ```js
 featured_projects: [

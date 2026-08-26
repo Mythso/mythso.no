@@ -40,9 +40,9 @@ window.siteConfig = {
     {
       icon: "🚗",
       title: "GarasjePortalen",
-      description: "Internportal for garasjelaget ved Heggedal Terrasse borettslag. Beboere logger inn med personlig plasskode og rapporterer hendelser; administratorer får full oversikt med statistikk og CSV-eksport. Eget domene (htgp.no) er under utrulling.",
-      link: "",
-      linkLabel: ""
+      description: "Internportal for garasjelaget ved Heggedal Terrasse borettslag. Beboere logger inn med personlig plasskode og rapporterer hendelser; administratorer får full oversikt med statistikk og CSV-eksport.",
+      link: "https://htgp.no",
+      linkLabel: "Besøk siden →"
     },
     {
       icon: "🔒",

@@ -57,9 +57,23 @@ window.siteConfig = {
       description: "YouTube Shorts-kanal som pakker ut hva som skjer i verden akkurat nå — og hvorfor. Daglige videoer bygget på minst to uavhengige kilder, ingen fyllstoff, ingen clickbait.",
       link: "https://www.youtube.com/@trendunpacked",
       linkLabel: "Se kanalen →"
+    },
+    {
+      icon: "🗣️",
+      title: "Sermo",
+      description: "AI-basert uttale-coach for språklæring (React Native/Expo). Brukeren snakker inn en frase og får AI-vurdert score samt tilbakemelding på eget morsmål, med strek-telling og resultatoversikt.",
+      link: "https://replit.com/@mythso/Speak-Skill",
+      linkLabel: "Se demo →"
+    },
+    {
+      icon: "👶",
+      title: "OppvekstNorge",
+      description: "Kuratert digital veileder for foreldre og familier med barn 0–5 år. Aldersinndelte råd, lynraskt søk og direkte lenker til offentlige kilder som Helsenorge, NAV og Bufdir.",
+      link: "https://oppvekstnorge.no",
+      linkLabel: "Besøk siden →"
     }
   ],
-  cv_url: "CV_2025.pdf",
+  cv_url: "CV_2026.pdf",
 
   // Brukes av /allowlist.html
   allow_hosts: [
@@ -88,5 +102,5 @@ window.siteConfig = {
   ],
 
   // NYTT: footer-tekst (styrer alle sider)
-  footer_text: "© 2025 mythso. Alle rettigheter reservert."
+  footer_text: "© 2026 mythso. Alle rettigheter reservert."
 };

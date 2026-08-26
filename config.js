@@ -10,67 +10,67 @@ window.siteConfig = {
   // Utvalgte prosjekter (vises som kort på forsiden)
   featured_projects: [
     {
-      icon: "🛡️",
-      title: "TryggNett",
-      description: "Android-nettleser (tidligere «AllowlistBrowser») som kun tillater navigasjon til domener godkjent via api.appdownstatus.com. Viser tydelig forklaring ved blokkering — svindel/phishing, skadevare, ulovlig eller upassende innhold.",
-      link: "",
-      linkLabel: ""
-    },
-    {
-      icon: "🔒",
-      title: "Cairn",
-      description: "NIS2 Compliance Engine — automatiserer etterlevelse av EUs nye cybersikkerhetsdirektiv for virksomheter.",
-      link: "https://replit.com/@mythso/NIS2-Compliance-Engine",
-      linkLabel: "Se demo →"
-    },
-    {
-      icon: "💬",
-      title: "Medarbeiderpuls",
-      description: "Kontinuerlig, anonym pulsmåling for ansattes trivsel, solgt til norske virksomheter og offentlig sektor. Ansatte svarer med kun en teamkode (ingen innlogging) — arbeidsgivere får sanntidsdashboard med helsescore og trender.",
-      link: "https://replit.com/@mythso/Pulse-Insight",
-      linkLabel: "Se demo →"
-    },
-    {
-      icon: "🚗",
-      title: "Garasjelagportalen",
-      description: "Internportal for garasjelaget ved Heggedal Terrasse borettslag. Beboere logger inn med personlig plasskode og rapporterer hendelser; administratorer får full oversikt med statistikk, CSV-eksport og varsling.",
-      link: "https://garasje-frontend-production.up.railway.app",
-      linkLabel: "Se prosjekt →"
-    },
-    {
       icon: "📡",
       title: "AppDownStatus",
-      description: "Crowdsourcet nedetids-overvåking for ~90 populære tjenester (sosiale medier, streaming, spill, AI, bank m.fl.) fordelt på 14 kategorier, med feilkode-leksikon og forslag til nye tjenester.",
+      description: "Crowdsourcet nedetids-overvåking for over 100 populære tjenester fordelt på 14 kategorier. Brukere stemmer i sanntid på om en tjeneste er nede, med feilkode-leksikon og automatisk ukentlig import av norske tjenester.",
       link: "https://appdownstatus.com",
       linkLabel: "Besøk siden →"
     },
     {
       icon: "📊",
       title: "Sievoo",
-      description: "Finans-SaaS for tallfokuserte investorer: DCF-verdsettelsesmotor, automatiserte ukentlige verdsettelser, porteføljedashboard, FIRE-kalkulator og et transparent investormiljø — ingen synsing, bare matte.",
+      description: "Finans-SaaS for tallfokuserte investorer: DCF-verdsettelsesmotor, automatiserte ukentlige verdsettelser, porteføljedashboard, FIRE-kalkulator og et transparent investormiljø.",
       link: "https://sievoo.com",
       linkLabel: "Se live →"
     },
     {
-      icon: "🎬",
-      title: "Trend Unpacked",
-      description: "YouTube Shorts-kanal som pakker ut hva som skjer i verden akkurat nå — og hvorfor. Daglige videoer bygget på minst to uavhengige kilder, ingen fyllstoff, ingen clickbait.",
-      link: "https://www.youtube.com/@trendunpacked",
-      linkLabel: "Se kanalen →"
+      icon: "💬",
+      title: "Medarbeiderpuls",
+      description: "Daglig, anonym pulsmåling for ansattes trivsel — kun en teamkode kreves, ingen personopplysninger lagres. Arbeidsgivere får sanntidsdashboard med helsescore, trender og nøkkelordanalyse.",
+      link: "https://www.medarbeiderpuls.no",
+      linkLabel: "Besøk siden →"
+    },
+    {
+      icon: "🛡️",
+      title: "TryggNett",
+      description: "Mobil nettleser (Android først) som kun tillater navigasjon til domener godkjent via AppDownStatus sin allowlist-API. Blokkerer alt annet innhold med tydelig forklaring til brukeren.",
+      link: "",
+      linkLabel: ""
+    },
+    {
+      icon: "🚗",
+      title: "GarasjePortalen",
+      description: "Internportal for garasjelaget ved Heggedal Terrasse borettslag. Beboere logger inn med personlig plasskode og rapporterer hendelser; administratorer får full oversikt med statistikk og CSV-eksport. Eget domene (htgp.no) er under utrulling.",
+      link: "",
+      linkLabel: ""
+    },
+    {
+      icon: "🔒",
+      title: "Cairn",
+      description: "Ultralett compliance-motor for NIS2 Artikkel 21 — helt uten database. Logger lagres som roterende JSON-Lines-filer, XML-drevne regler utfører automatisk gap-analyse, og systemet genererer PDF-bevis for revisorer.",
+      link: "",
+      linkLabel: ""
     },
     {
       icon: "🗣️",
       title: "Sermo",
-      description: "AI-basert uttale-coach for språklæring (React Native/Expo). Brukeren snakker inn en frase og får AI-vurdert score samt tilbakemelding på eget morsmål, med strek-telling og resultatoversikt.",
-      link: "https://replit.com/@mythso/Speak-Skill",
-      linkLabel: "Se demo →"
+      description: "AI-basert uttale-coach for språklæring (React Native/Expo). Brukeren lytter til en AI-generert frase, spiller inn egen uttale og får poengsum og tilbakemelding på eget morsmål, med strek-telling og resultattavle.",
+      link: "",
+      linkLabel: ""
+    },
+    {
+      icon: "🎬",
+      title: "Trend Unpacked",
+      description: "YouTube Shorts-kanal som daglig pakker ut hva som skjer i verden akkurat nå — og hvorfor. Kort, kildebasert og uten fyllstoff.",
+      link: "https://www.youtube.com/@trendunpacked",
+      linkLabel: "Se kanalen →"
     },
     {
       icon: "👶",
       title: "OppvekstNorge",
-      description: "Kuratert digital veileder for foreldre og familier med barn 0–5 år. Aldersinndelte råd, lynraskt søk og direkte lenker til offentlige kilder som Helsenorge, NAV og Bufdir.",
-      link: "https://oppvekstnorge.no",
-      linkLabel: "Besøk siden →"
+      description: "Kuratert digital veileder for foreldre med barn 0–5 år. Aldersinndelte råd, lynraskt søk og direkte lenker til offentlige kilder som Helsenorge og Bufdir. Domenet oppvekstnorge.no er reservert; MVP er under arbeid.",
+      link: "",
+      linkLabel: ""
     }
   ],
   cv_url: "CV_2026.pdf",

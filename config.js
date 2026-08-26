@@ -11,8 +11,8 @@ window.siteConfig = {
   featured_projects: [
     {
       icon: "🛡️",
-      title: "Allowlist Browser",
-      description: "Android-nettleser (Kotlin) som kun tillater navigasjon til domener godkjent via api.appdownstatus.com. Automatisk subdomene-matching, sanntids blokkeringsforklaring og innebygd flyt for å foreslå nye domener.",
+      title: "TryggNett",
+      description: "Android-nettleser (tidligere «AllowlistBrowser») som kun tillater navigasjon til domener godkjent via api.appdownstatus.com. Viser tydelig forklaring ved blokkering — svindel/phishing, skadevare, ulovlig eller upassende innhold.",
       link: "",
       linkLabel: ""
     },
@@ -25,8 +25,8 @@ window.siteConfig = {
     },
     {
       icon: "💬",
-      title: "Pulse Insight",
-      description: "Anonym sanntids trivselsmåling for ansatte, med rullerende gjennomsnitt og innebygd personvern.",
+      title: "Medarbeiderpuls",
+      description: "Kontinuerlig, anonym pulsmåling for ansattes trivsel, solgt til norske virksomheter og offentlig sektor. Ansatte svarer med kun en teamkode (ingen innlogging) — arbeidsgivere får sanntidsdashboard med helsescore og trender.",
       link: "https://replit.com/@mythso/Pulse-Insight",
       linkLabel: "Se demo →"
     },
@@ -50,6 +50,13 @@ window.siteConfig = {
       description: "Finans-SaaS for tallfokuserte investorer: DCF-verdsettelsesmotor, automatiserte ukentlige verdsettelser, porteføljedashboard, FIRE-kalkulator og et transparent investormiljø — ingen synsing, bare matte.",
       link: "https://sievoo.com",
       linkLabel: "Se live →"
+    },
+    {
+      icon: "🎬",
+      title: "Trend Unpacked",
+      description: "YouTube Shorts-kanal som pakker ut hva som skjer i verden akkurat nå — og hvorfor. Daglige videoer bygget på minst to uavhengige kilder, ingen fyllstoff, ingen clickbait.",
+      link: "https://www.youtube.com/@trendunpacked",
+      linkLabel: "Se kanalen →"
     }
   ],
   cv_url: "CV_2025.pdf",

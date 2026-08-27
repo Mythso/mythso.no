@@ -73,7 +73,7 @@ window.siteConfig = {
       linkLabel: ""
     }
   ],
-  cv_url: "CV_2026.pdf",
+  cv_url: "/CV_2026.pdf",
 
   // Brukes av /allowlist.html
   allow_hosts: [

@@ -56,6 +56,19 @@
     .avatar{width:clamp(120px,18vw,168px);height:clamp(120px,18vw,168px);flex:none;border-radius:50%;overflow:hidden;border:4px solid #fff;box-shadow:0 8px 24px rgba(16,24,40,.12)}
     .avatar img{width:100%;height:100%;object-fit:cover;display:block}
     .hidden{display:none!important}
+
+    .cv-block{margin-bottom:22px}
+    .cv-block:last-child{margin-bottom:0}
+    .cv-block h3{margin:0 0 14px;font-size:16px;color:var(--brand);text-transform:uppercase;letter-spacing:.02em}
+    .cv-item{margin-bottom:18px}
+    .cv-item:last-child{margin-bottom:0}
+    .cv-item-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px 14px}
+    .cv-role{font-weight:700;font-size:15px}
+    .cv-period{color:var(--muted);font-size:12.5px;white-space:nowrap}
+    .cv-org{color:var(--muted);font-style:italic;margin:2px 0 8px;font-size:13.5px}
+    .cv ul{margin:0;padding-left:18px}
+    .cv li{margin:4px 0;font-size:14px;line-height:1.55;color:var(--text)}
+    .cv p{margin:6px 0;font-size:14px;line-height:1.55}
   </style>
 
   <script src="/config.js"></script>
@@ -86,6 +99,99 @@
     <section class="card hidden" id="projectsBox">
       <h2>Prosjekter</h2>
       <div class="project-grid" id="projectsList"></div>
+    </section>
+
+    <section class="card" id="cvBox">
+      <h2>CV</h2>
+      <div class="cv">
+        <div class="cv-block">
+          <h3>Arbeidserfaring</h3>
+
+          <div class="cv-item">
+            <div class="cv-item-head">
+              <span class="cv-role">Forvalter / Tech Lead / Teamleder – Støtteinfrastruktur</span>
+              <span class="cv-period">Desember 2024 – nåværende</span>
+            </div>
+            <div class="cv-org">Statens vegvesen</div>
+            <ul>
+              <li><b>Strategisk plattformledelse:</b> Leder strategisk retning, roadmaps og produktifisering av SVVs observability-plattform (IT/OT) for opptil 300 daglige brukere, forankret i etatens toppmål.</li>
+              <li><b>Kulturendring og samhandling:</b> Faglig/strategisk ledelse for tverrfaglig team. Driver silo-knusing, presentasjoner for Vegdirektøren og initiativ mot svenske Trafikverket og Digital sikkerhet.</li>
+              <li><b>ServiceNow, CMDB og prosesser:</b> Forbedret bestillingsskjema for teamet, bistår Change- og Incident-prosessene og jobber for å berike etatens CMDB.</li>
+              <li><b>Automatisering og KI:</b> Utforsker praktisk bruk av KI for effektivisering, blant annet ved å koble Microsoft Copilot til datakilder via MCP-server.</li>
+              <li><b>Prosessoptimalisering:</b> Samler verktøy og tilgjengeliggjør brannmurdata, og erstatter manuelle PowerPoint-rapporter med automatiserte KPI/OKR-dashboards.</li>
+              <li><b>Data Governance, NIS2 og GDPR:</b> Ansvarlig for informasjonsarkitektur, datakvalitet og forvaltning i stor skala. Samarbeider med Digital sikkerhet om NIS2-etterlevelse og GDPR-rapportering.</li>
+              <li><b>Anskaffelser og leverandørstyring:</b> Ansvarlig for behovsledelse, IT-anskaffelser og konsulentkontrakter, med gunstige lisens- og maskinvareavtaler.</li>
+            </ul>
+          </div>
+
+          <div class="cv-item">
+            <div class="cv-item-head">
+              <span class="cv-role">Splunk-ekspert</span>
+              <span class="cv-period">Januar 2024 – November 2024</span>
+            </div>
+            <div class="cv-org">Statens vegvesen</div>
+            <ul>
+              <li><b>Dataproduktutvikling og innsikt:</b> Ansvarlig for drift, utvikling og arkitektur for virksomhetens sentrale Splunk-løsning (data lakehouse/logganalyse).</li>
+              <li><b>Behovsledelse og kommunikasjon:</b> Fasiliterte tverrfaglig samarbeid, identifiserte brukerbehov og utarbeidet dashboards og visualiseringer for bedre virksomhetsstyring.</li>
+            </ul>
+          </div>
+
+          <div class="cv-item">
+            <div class="cv-item-head">
+              <span class="cv-role">Splunk-konsulent / Sikkerhetskonsulent</span>
+              <span class="cv-period">Aug 2022 – Juli 2023, Aug 2023 – Des 2023</span>
+            </div>
+            <div class="cv-org">Atea / Cybertronics Consulting</div>
+            <ul>
+              <li>Implementering av loggefunksjonalitet, data-onboarding og kvalitetskontroll.</li>
+              <li>Utarbeidet veiledninger for logginnsamling fra flere plattformer.</li>
+            </ul>
+          </div>
+
+          <div class="cv-item">
+            <div class="cv-item-head">
+              <span class="cv-role">Infrastrukturingeniør</span>
+              <span class="cv-period">August 2019 – Juni 2022</span>
+            </div>
+            <div class="cv-org">Sopra Steria</div>
+            <ul>
+              <li>Splunk- og SolarWinds-administrator for ca. 30 kunder.</li>
+              <li>Prosjekter innen Azure, ServiceNow, AD og skripting (Bash, PowerShell, Python).</li>
+            </ul>
+          </div>
+
+          <div class="cv-item">
+            <div class="cv-item-head">
+              <span class="cv-role">Personellbefal</span>
+              <span class="cv-period">August 2017 – nåværende</span>
+            </div>
+            <div class="cv-org">Heimevernet (HV17)</div>
+            <ul>
+              <li>Ledererfaring med ansvar for personell, ressurskoordinering og prosessforbedring.</li>
+              <li>Sikkerhetsklarering: Innehar aktiv klarering for HEMMELIG.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cv-block">
+          <h3>Utdanning</h3>
+          <div class="cv-item">
+            <div class="cv-item-head">
+              <span class="cv-role">Bachelor i informatikk</span>
+              <span class="cv-period">August 2016 – Juli 2019</span>
+            </div>
+            <div class="cv-org">Universitetet i Tromsø</div>
+            <p class="muted">Fordypning i datadrift, OS, databaser og nettverk. Programmering i C og Python, med noe erfaring i SQL, C# og Assembly. Samt fire økonomiemner (Markedsføring, Kreativitet og Innovasjon, Regnskap og Foretaksstrategi).</p>
+          </div>
+        </div>
+
+        <div class="cv-block">
+          <h3>Annet</h3>
+          <p><b>Sertifiseringer:</b> Splunk Enterprise Certified Architect, Admin, Power User, User</p>
+          <p><b>Kurs:</b> Lagførerkurs 2019, IT Service Intelligence 2023, Endringsledelse og endringsprosesser apr. 2025</p>
+          <p><b>Verv NITO:</b> Styremedlem i Sopra Steria fra nov. 2019 til juni 2022, styremedlem fra apr. 2024, og etatsstyremedlem i Statens vegvesen fra aug. 2025</p>
+        </div>
+      </div>
     </section>
   </main>
 

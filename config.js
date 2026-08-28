@@ -102,5 +102,5 @@ window.siteConfig = {
   ],
 
   // NYTT: footer-tekst (styrer alle sider)
-  footer_text: "© 2026 mythso. Alle rettigheter reservert."
+  footer_text: "© 2026 mythso. Alle rettigheter reservert. Thomas Myklebust Soleng – mythso.no DATA SOLENG · Org.nr. 938 320 357 · Åmothellinga 42, 1389 Heggedal"
 };

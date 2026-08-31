@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Slett konto – TryggNett</title>
+  <meta name="description" content="Slett din TryggNett-konto og tilhørende data">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0b0c10">
+  <meta name="theme-color" content="#ffffff">
+
+  <style>
+    :root{
+      --bg:#f7f8fa; --panel:#ffffff; --text:#161821; --muted:#667085;
+      --brand:#3b6fe0; --brand2:#2fd48a; --danger:#d92d20; --border:rgba(16,24,40,.10); --r:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial;
+      color:var(--text);background:var(--bg);
+    }
+    .wrap{width:min(640px,92%);margin:0 auto;padding:28px 0 60px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:clamp(20px,4vw,36px);margin-top:22px}
+    h1{font-size:clamp(24px,4.2vw,30px);margin:.2em 0}
+    p,li{line-height:1.65}
+    .muted{color:var(--muted)}
+    .pill{display:inline-block;padding:4px 10px;border:1px solid var(--border);border-radius:999px;font-size:13px;color:var(--muted);margin-bottom:8px}
+    ul{padding-left:1.2em}
+    a{color:var(--brand)}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;border-radius:10px;border:1px solid var(--border);background:#fff;font-weight:600;font-size:15px;cursor:pointer;color:var(--text)}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border:none}
+    .btn-danger{background:var(--danger);color:#fff;border:none}
+    .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+    .account-box{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:#fafbfc;margin:16px 0}
+    .avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+
+    input[type="text"]{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font-size:15px;margin-top:8px}
+
+    .msg{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:14px;display:none}
+    .msg.show{display:block}
+    .msg-error{background:#fef3f2;color:var(--danger);border:1px solid #fecdca}
+    .msg-success{background:#ecfdf3;color:#067647;border:1px solid #abefc6}
+    .msg-info{background:#eff4ff;color:#175cd3;border:1px solid #b2ccff}
+
+    .step{display:none}
+    .step.active{display:block}
+    .small{font-size:13px}
+  </style>
+
+  <script src="/config.js"></script>
+  <script src="/common.js"></script>
+</head>
+<body>
+  <main class="wrap">
+    <article class="card">
+      <span class="pill">TryggNett</span>
+      <h1>Slett konto</h1>
+      <p>Dette sletter TryggNett-kontoen din og alle tilhørende data permanent: favoritter, bruksstatistikk, foresatt-kobling, godkjenningsforespørsler og Pro-ønsker. Nettleserhistorikk lagret lokalt på enheten din må slettes separat i appen eller ved å avinstallere den.</p>
+      <p class="small muted">Dette kan ikke angres. Sletting skjer umiddelbart.</p>
+
+      <!-- Step 1: sign in -->
+      <div id="step-signin" class="step active">
+        <div class="row">
+          <button id="btnSignIn" class="btn btn-primary">Logg inn med Google for å fortsette</button>
+        </div>
+      </div>
+
+      <!-- Step 2: confirm -->
+      <div id="step-confirm" class="step">
+        <div class="account-box">
+          <div class="avatar" id="avatarInitial">?</div>
+          <div>
+            <div id="accountEmail" style="font-weight:600"></div>
+            <div class="small muted">Innlogget</div>
+          </div>
+        </div>
+
+        <p>Skriv <strong>SLETT</strong> i feltet under for å bekrefte at du vil slette denne kontoen permanent.</p>
+        <input type="text" id="confirmInput" placeholder="Skriv SLETT">
+
+        <div class="row">
+          <button id="btnDelete" class="btn btn-danger" disabled>Slett konto permanent</button>
+          <button id="btnCancel" class="btn">Avbryt</button>
+        </div>
+      </div>
+
+      <!-- Step 3: working / result -->
+      <div id="step-done" class="step">
+        <p id="doneText"></p>
+      </div>
+
+      <div id="msg" class="msg"></div>
+
+      <p class="small muted" style="margin-top:22px">Har du problemer med å logge inn eller slette kontoen? Bruk <strong>Kontakt support</strong> i appen (Innstillinger → Support), så hjelper vi deg manuelt.</p>
+    </article>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+    import {
+      getAuth, GoogleAuthProvider, signInWithPopup, deleteUser
+    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+    import {
+      getFirestore, doc, deleteDoc, collection, getDocs, query, where
+    } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCb-TZkB9bys0RP6a59WW1hKuLxjPrbjqM",
+      authDomain: "tryggnett-383b5.firebaseapp.com",
+      projectId: "tryggnett-383b5",
+      storageBucket: "tryggnett-383b5.firebasestorage.app",
+      messagingSenderId: "135445641316",
+      appId: "1:135445641316:web:3df3ac4b49d71246394771",
+      measurementId: "G-F7HP3BPBG2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const stepSignIn = document.getElementById('step-signin');
+    const stepConfirm = document.getElementById('step-confirm');
+    const stepDone = document.getElementById('step-done');
+    const doneText = document.getElementById('doneText');
+    const msgBox = document.getElementById('msg');
+
+    function showStep(step) {
+      [stepSignIn, stepConfirm, stepDone].forEach(s => s.classList.remove('active'));
+      step.classList.add('active');
+    }
+    function showMsg(text, type) {
+      msgBox.textContent = text;
+      msgBox.className = 'msg show msg-' + type;
+    }
+    function hideMsg() {
+      msgBox.className = 'msg';
+    }
+
+    let currentUser = null;
+
+    document.getElementById('btnSignIn').addEventListener('click', async () => {
+      hideMsg();
+      try {
+        const provider = new GoogleAuthProvider();
+        const result = await signInWithPopup(auth, provider);
+        currentUser = result.user;
+        document.getElementById('accountEmail').textContent = currentUser.email || currentUser.uid;
+        document.getElementById('avatarInitial').textContent = (currentUser.email || 'T').charAt(0).toUpperCase();
+        showStep(stepConfirm);
+      } catch (err) {
+        console.error(err);
+        showMsg('Innlogging feilet. Prøv igjen, eller kontakt support i appen.', 'error');
+      }
+    });
+
+    document.getElementById('btnCancel').addEventListener('click', () => {
+      currentUser = null;
+      document.getElementById('confirmInput').value = '';
+      document.getElementById('btnDelete').disabled = true;
+      hideMsg();
+      showStep(stepSignIn);
+    });
+
+    document.getElementById('confirmInput').addEventListener('input', (e) => {
+      document.getElementById('btnDelete').disabled = e.target.value.trim().toUpperCase() !== 'SLETT';
+    });
+
+    document.getElementById('btnDelete').addEventListener('click', async () => {
+      if (!currentUser) return;
+      const btn = document.getElementById('btnDelete');
+      btn.disabled = true;
+      btn.textContent = 'Sletter …';
+      hideMsg();
+
+      const uid = currentUser.uid;
+      const email = currentUser.email;
+
+      try {
+        // Favorites subcollection
+        const favSnap = await getDocs(collection(db, 'users', uid, 'favorites'));
+        await Promise.all(favSnap.docs.map(d => deleteDoc(d.ref)));
+
+        // Interactions subcollection
+        const intSnap = await getDocs(collection(db, 'users', uid, 'interactions'));
+        await Promise.all(intSnap.docs.map(d => deleteDoc(d.ref)));
+
+        // link_codes created by this user as guardian
+        const lcSnap = await getDocs(query(collection(db, 'link_codes'), where('guardianId', '==', uid)));
+        await Promise.all(lcSnap.docs.map(d => deleteDoc(d.ref)));
+
+        // approval_requests where this user is the ward
+        const arWard = await getDocs(query(collection(db, 'approval_requests'), where('wardId', '==', uid)));
+        // approval_requests where this user is the guardian
+        const arGuardian = await getDocs(query(collection(db, 'approval_requests'), where('guardianId', '==', uid)));
+        await Promise.all([...arWard.docs, ...arGuardian.docs].map(d => deleteDoc(d.ref)));
+
+        // Best-effort: support tickets matching this user's email
+        if (email) {
+          try {
+            const stSnap = await getDocs(query(collection(db, 'support_tickets'), where('email', '==', email)));
+            await Promise.all(stSnap.docs.map(d => deleteDoc(d.ref)));
+          } catch (e) {
+            console.warn('Kunne ikke fjerne support-henvendelser automatisk', e);
+          }
+        }
+
+        // Main user document
+        await deleteDoc(doc(db, 'users', uid));
+
+        // Finally, delete the Auth account itself
+        await deleteUser(currentUser);
+
+        doneText.textContent = 'Kontoen og tilhørende data er slettet permanent. Du kan nå lukke denne siden.';
+        showStep(stepDone);
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = 'Slett konto permanent';
+        if (err && err.code === 'auth/requires-recent-login') {
+          showMsg('Av sikkerhetshensyn må du logge inn på nytt før kontoen kan slettes. Trykk Avbryt og logg inn igjen.', 'error');
+        } else {
+          showMsg('Noe gikk galt under slettingen. Prøv igjen, eller kontakt support i appen.', 'error');
+        }
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => { window.renderChrome?.(); });
+  </script>
+</body>
+</html>

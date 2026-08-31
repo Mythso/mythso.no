@@ -51,6 +51,8 @@
     .step{display:none}
     .step.active{display:block}
     .small{font-size:13px}
+    .warn-list{margin-top:10px}
+    .warn-list li{font-size:13px;color:var(--muted)}
   </style>
 
   <script src="/config.js"></script>
@@ -93,6 +95,7 @@
       <!-- Step 3: working / result -->
       <div id="step-done" class="step">
         <p id="doneText"></p>
+        <ul id="warnList" class="warn-list"></ul>
       </div>
 
       <div id="msg" class="msg"></div>
@@ -128,6 +131,7 @@
     const stepConfirm = document.getElementById('step-confirm');
     const stepDone = document.getElementById('step-done');
     const doneText = document.getElementById('doneText');
+    const warnList = document.getElementById('warnList');
     const msgBox = document.getElementById('msg');
 
     function showStep(step) {
@@ -171,6 +175,16 @@
       document.getElementById('btnDelete').disabled = e.target.value.trim().toUpperCase() !== 'SLETT';
     });
 
+    // Runs one cleanup step; on failure, records a warning but never blocks the rest.
+    async function tryStep(label, fn, warnings) {
+      try {
+        await fn();
+      } catch (e) {
+        console.warn('Kunne ikke fullføre steg: ' + label, e);
+        warnings.push(label);
+      }
+    }
+
     document.getElementById('btnDelete').addEventListener('click', async () => {
       if (!currentUser) return;
       const btn = document.getElementById('btnDelete');
@@ -180,43 +194,55 @@
 
       const uid = currentUser.uid;
       const email = currentUser.email;
+      const warnings = [];
 
-      try {
-        // Favorites subcollection
+      // Secondary cleanup — best-effort, each isolated so one failure doesn't stop the rest.
+      await tryStep('favoritter', async () => {
         const favSnap = await getDocs(collection(db, 'users', uid, 'favorites'));
         await Promise.all(favSnap.docs.map(d => deleteDoc(d.ref)));
+      }, warnings);
 
-        // Interactions subcollection
+      await tryStep('bruksstatistikk', async () => {
         const intSnap = await getDocs(collection(db, 'users', uid, 'interactions'));
         await Promise.all(intSnap.docs.map(d => deleteDoc(d.ref)));
+      }, warnings);
 
-        // link_codes created by this user as guardian
+      await tryStep('foresatt-koblinger', async () => {
         const lcSnap = await getDocs(query(collection(db, 'link_codes'), where('guardianId', '==', uid)));
         await Promise.all(lcSnap.docs.map(d => deleteDoc(d.ref)));
+      }, warnings);
 
-        // approval_requests where this user is the ward
+      await tryStep('godkjenningsforespørsler', async () => {
         const arWard = await getDocs(query(collection(db, 'approval_requests'), where('wardId', '==', uid)));
-        // approval_requests where this user is the guardian
         const arGuardian = await getDocs(query(collection(db, 'approval_requests'), where('guardianId', '==', uid)));
         await Promise.all([...arWard.docs, ...arGuardian.docs].map(d => deleteDoc(d.ref)));
+      }, warnings);
 
-        // Best-effort: support tickets matching this user's email
-        if (email) {
-          try {
-            const stSnap = await getDocs(query(collection(db, 'support_tickets'), where('email', '==', email)));
-            await Promise.all(stSnap.docs.map(d => deleteDoc(d.ref)));
-          } catch (e) {
-            console.warn('Kunne ikke fjerne support-henvendelser automatisk', e);
-          }
-        }
+      await tryStep('Pro-ønsker (eldre lagringsformat)', async () => {
+        await deleteDoc(doc(db, 'pro_interests', uid));
+      }, warnings);
 
-        // Main user document
+      if (email) {
+        await tryStep('support-henvendelser', async () => {
+          const stSnap = await getDocs(query(collection(db, 'support_tickets'), where('email', '==', email)));
+          await Promise.all(stSnap.docs.map(d => deleteDoc(d.ref)));
+        }, warnings);
+      }
+
+      // Critical steps — if these fail, the account is NOT considered deleted.
+      try {
         await deleteDoc(doc(db, 'users', uid));
-
-        // Finally, delete the Auth account itself
         await deleteUser(currentUser);
 
-        doneText.textContent = 'Kontoen og tilhørende data er slettet permanent. Du kan nå lukke denne siden.';
+        doneText.textContent = warnings.length === 0
+          ? 'Kontoen og tilhørende data er slettet permanent. Du kan nå lukke denne siden.'
+          : 'Kontoen din er slettet. Noen tilleggsdata kunne ikke fjernes automatisk og følges opp manuelt:';
+        warnList.innerHTML = '';
+        warnings.forEach(w => {
+          const li = document.createElement('li');
+          li.textContent = w;
+          warnList.appendChild(li);
+        });
         showStep(stepDone);
       } catch (err) {
         console.error(err);

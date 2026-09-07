@@ -43,6 +43,13 @@ window.siteConfig = {
       description: "YouTube Shorts-kanal som daglig pakker ut hva som skjer i verden akkurat nå — og hvorfor. Kort, kildebasert og uten fyllstoff.",
       link: "https://www.youtube.com/@trendunpacked",
       linkLabel: "Se kanalen →"
+    },
+    {
+      icon: "👶",
+      title: "OppvekstNorge",
+      description: "Kuratert digital veileder for foreldre med barn 0–5 år. Aldersinndelte råd, lynraskt søk og direkte lenker til offentlige kilder som Helsenorge og Bufdir.",
+      link: "https://oppvekstnorge.no",
+      linkLabel: "Besøk siden →"
     }
   ],
   cv_url: "/CV_2026.pdf",

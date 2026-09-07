@@ -31,13 +31,6 @@ window.siteConfig = {
       linkLabel: "Besøk siden →"
     },
     {
-      icon: "🛡️",
-      title: "TryggNett",
-      description: "Mobil nettleser (Android først) som kun tillater navigasjon til domener godkjent via AppDownStatus sin allowlist-API. Blokkerer alt annet innhold med tydelig forklaring til brukeren.",
-      link: "",
-      linkLabel: ""
-    },
-    {
       icon: "🚗",
       title: "GarasjePortalen",
       description: "Internportal for garasjelaget ved Heggedal Terrasse borettslag. Beboere logger inn med personlig plasskode og rapporterer hendelser; administratorer får full oversikt med statistikk og CSV-eksport.",
@@ -45,32 +38,11 @@ window.siteConfig = {
       linkLabel: "Besøk siden →"
     },
     {
-      icon: "🔒",
-      title: "Cairn",
-      description: "Ultralett compliance-motor for NIS2 Artikkel 21 — helt uten database. Logger lagres som roterende JSON-Lines-filer, XML-drevne regler utfører automatisk gap-analyse, og systemet genererer PDF-bevis for revisorer.",
-      link: "",
-      linkLabel: ""
-    },
-    {
-      icon: "🗣️",
-      title: "Sermo",
-      description: "AI-basert uttale-coach for språklæring (React Native/Expo). Brukeren lytter til en AI-generert frase, spiller inn egen uttale og får poengsum og tilbakemelding på eget morsmål, med strek-telling og resultattavle.",
-      link: "",
-      linkLabel: ""
-    },
-    {
       icon: "🎬",
       title: "Trend Unpacked",
       description: "YouTube Shorts-kanal som daglig pakker ut hva som skjer i verden akkurat nå — og hvorfor. Kort, kildebasert og uten fyllstoff.",
       link: "https://www.youtube.com/@trendunpacked",
       linkLabel: "Se kanalen →"
-    },
-    {
-      icon: "👶",
-      title: "OppvekstNorge",
-      description: "Kuratert digital veileder for foreldre med barn 0–5 år. Aldersinndelte råd, lynraskt søk og direkte lenker til offentlige kilder som Helsenorge og Bufdir. Domenet oppvekstnorge.no er reservert; MVP er under arbeid.",
-      link: "",
-      linkLabel: ""
     }
   ],
   cv_url: "/CV_2026.pdf",

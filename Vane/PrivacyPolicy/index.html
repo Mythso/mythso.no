@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Personvernerklæring – Vane</title>
+  <meta name="description" content="Personvernerklæring for Vane">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0b0c10">
+  <meta name="theme-color" content="#ffffff">
+
+  <style>
+    :root{
+      --bg:#f7f8fa; --panel:#ffffff; --text:#161821; --muted:#667085;
+      --brand:#3b6fe0; --brand2:#2fd48a; --border:rgba(16,24,40,.10); --r:16px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial;
+      color:var(--text);background:var(--bg);
+    }
+    .wrap{width:min(760px,92%);margin:0 auto;padding:28px 0 60px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:clamp(20px,4vw,36px);margin-top:22px}
+    h1{font-size:clamp(26px,4.5vw,34px);margin:.2em 0}
+    h2{font-size:20px;margin:1.6em 0 .5em}
+    p,li{line-height:1.65}
+    .muted{color:var(--muted)}
+    .updated{font-size:14px;color:var(--muted);margin-top:6px}
+    ul{padding-left:1.2em}
+    .pill{display:inline-block;padding:4px 10px;border:1px solid var(--border);border-radius:999px;font-size:13px;color:var(--muted);margin-bottom:8px}
+    a{color:var(--brand)}
+  </style>
+
+  <script src="/config.js"></script>
+  <script src="/common.js"></script>
+</head>
+<body>
+  <main class="wrap">
+    <article class="card">
+      <span class="pill">Vane</span>
+      <h1>Personvernerklæring</h1>
+      <p class="updated">Sist oppdatert: 8. september 2026</p>
+
+      <p>Vane («vi», «oss» eller «appen») er forpliktet til å beskytte ditt personvern. Denne personvernerklæringen forklarer hvordan opplysninger behandles når du bruker Android-applikasjonen <strong>Vane</strong>.</p>
+
+      <p><strong>Behandlingsansvarlig:</strong> Thomas Myklebust Soleng, utvikler av Vane (<a href="/">mythso.no</a>).</p>
+
+      <h2>1. Lokal-først prinsipp</h2>
+      <p>Vane er bygget på et lokal-først prinsipp. Dette betyr:</p>
+      <ul>
+        <li><strong>Ingen hemmelig datasamling:</strong> Appåpninger, vaner, pauser, skjermtid og personlige preferanser lagres 100 % lokalt på din Android-enhet i appens egne beskyttede minne (SharedPreferences).</li>
+        <li><strong>Ingen ekstern sporing:</strong> Vi selger, sporer eller deler aldri dine personopplysninger eller app-bruk med tredjeparter.</li>
+      </ul>
+
+      <h2>2. LinkedIn-integrasjon &amp; autentisering</h2>
+      <p>Dersom du velger å koble til din LinkedIn-konto i Vane:</p>
+      <ul>
+        <li><strong>Hensikt:</strong> Integrasjonen brukes utelukkende til å verifisere din identitet og vise ditt navn, stillingstittel og vanestreak på den frivillige LinkedIn-topplisten i appen.</li>
+        <li><strong>Hva vi henter:</strong> Med ditt eksplisitte samtykke henter vi kun offentlige profildata (openid, profile, email) fra LinkedIn sitt offisielle OpenID Connect API.</li>
+        <li><strong>Passord &amp; tilgang:</strong> Vi ser eller lagrer aldri ditt LinkedIn-passord. Innloggingen skjer 100 % trygt på LinkedIn sin offisielle autorisasjonsside.</li>
+        <li><strong>Frakobling:</strong> Du kan når som helst koble fra din LinkedIn-konto under Innstillinger i appen.</li>
+      </ul>
+
+      <h2>3. Android systemtillatelser</h2>
+      <p>For å fungere automatisk i bakgrunnen ber Vane om to spesifikke Android-tillatelser:</p>
+      <ul>
+        <li><strong>Tilgjengelighetstjeneste (AccessibilityService):</strong> Brukes utelukkende til å oppdage når en overvåket app har vært i aktiv bruk over et valgt tidsintervall, samt til å låse skjermen under planlagt «Ro ned». Innhold i meldinger, passord eller tekst på skjermen leses eller lagres aldri.</li>
+        <li><strong>Vis over andre apper (SYSTEM_ALERT_WINDOW):</strong> Brukes til å vise den flytende Vane-pause popoveren og mørkleggingslaget for innsovning over skjermen din.</li>
+      </ul>
+
+      <h2>4. Endringer i personvernerklæringen</h2>
+      <p>Vi kan oppdatere denne personvernerklæringen fra tid til annen. Eventuelle endringer vil bli publisert i appen og på denne siden med ny dato for siste oppdatering.</p>
+
+      <h2>5. Kontakt oss</h2>
+      <p>Hvis du har spørsmål om denne personvernerklæringen eller ditt personvern i Vane, kan du kontakte oss på:</p>
+      <ul>
+        <li><strong>E-post:</strong> privacy@vane.app</li>
+        <li><strong>Nettside:</strong> <a href="https://github.com/Mythso/Vane">github.com/Mythso/Vane</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => { window.renderChrome?.(); });
+  </script>
+</body>
+</html>

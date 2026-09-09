@@ -1,6 +1,6 @@
 window.siteConfig = {
   my_name: "Thomas Myklebust Soleng",
-  my_description: "Liker å lære nye ting som helst kan brukes til noe fornuftig",
+  my_description: "Liker å lære nye ting som helst kan brukes til noe fornuftig. I det siste har jeg hatt det veldig gøy med KI.",
   my_title: "Teknologientusiast",
   linkedin_url: "https://www.linkedin.com/in/thomas-soleng",
   linkedin_profile_pic_url: "/profile.jpg",

@@ -57,6 +57,20 @@ window.siteConfig = {
       description: "Uoffisiell MCP-server for Statens vegvesens åpne DATEX II-data — vær, webkamera, reisetider og trafikkmeldinger. Ikke tilknyttet Statens vegvesen.",
       link: "https://github.com/Mythso/svv-mcp-unofficial",
       linkLabel: "Se på GitHub →"
+    },
+    {
+      icon: "🧭",
+      title: "Ruteplanlegger.no",
+      description: "Samler rute, vær, vei, trafikk og naturfare i én forklarbar reisevurdering for bil- og kollektivreiser — med sanntidsvarsler, NVE-naturfaredata og kart som følger faktisk veigeometri.",
+      link: "https://ruteplanlegger.no",
+      linkLabel: "Besøk siden →"
+    },
+    {
+      icon: "🚆",
+      title: "Togflyt",
+      description: "Beslutningshjelp når togtrafikken er uforutsigbar — kombinerer Enturs live-avganger med egne, tydelig merkede observasjoner av mulige togavhengigheter, og hjelper deg velge om du skal vente, bytte tog eller ta buss/taxi.",
+      link: "https://togflyt.no",
+      linkLabel: "Besøk siden →"
     }
   ],
   cv_url: "/CV_2026.pdf",

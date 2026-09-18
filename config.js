@@ -50,6 +50,13 @@ window.siteConfig = {
       description: "Kuratert digital veileder for foreldre med barn 0–5 år. Aldersinndelte råd, lynraskt søk og direkte lenker til offentlige kilder som Helsenorge og Bufdir.",
       link: "https://oppvekstnorge.no",
       linkLabel: "Besøk siden →"
+    },
+    {
+      icon: "🛣️",
+      title: "SVV MCP",
+      description: "Uoffisiell MCP-server for Statens vegvesens åpne DATEX II-data — vær, webkamera, reisetider og trafikkmeldinger. Ikke tilknyttet Statens vegvesen.",
+      link: "https://github.com/Mythso/svv-mcp-unofficial",
+      linkLabel: "Se på GitHub →"
     }
   ],
   cv_url: "/CV_2026.pdf",

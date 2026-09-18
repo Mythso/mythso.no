@@ -71,6 +71,13 @@ window.siteConfig = {
       description: "Beslutningshjelp når togtrafikken er uforutsigbar — kombinerer Enturs live-avganger med egne, tydelig merkede observasjoner av mulige togavhengigheter, og hjelper deg velge om du skal vente, bytte tog eller ta buss/taxi.",
       link: "https://togflyt.no",
       linkLabel: "Besøk siden →"
+    },
+    {
+      icon: "🏠",
+      title: "Verdivise",
+      description: "Norsk bolig- og eiendomsanalyse som gjør boligdata lettere å forstå — verdiestimater, sammenlignbare boliger, kart, FINN-søk og prisutvikling, med en betalt Innsikt-rapport.",
+      link: "https://verdivise.no",
+      linkLabel: "Besøk siden →"
     }
   ],
   cv_url: "/CV_2026.pdf",

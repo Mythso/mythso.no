@@ -30,6 +30,8 @@
     @keyframes spin{to{transform:rotate(360deg)}}
     h2{font-size:19px;margin:0 0 8px}
     p{color:var(--muted);font-size:15px;line-height:1.5;margin:0}
+    .btn{display:none;margin-top:20px;padding:10px 20px;border-radius:999px;background:var(--brand);color:#fff;text-decoration:none;font-weight:600;font-size:15px}
+    .btn.show{display:inline-block}
   </style>
 
   <script>
@@ -37,7 +39,15 @@
       // Sender autorisasjonskoden (?code=...) til Vane-appen via Android Deep Link
       window.location.href = "vane://linkedin-callback" + window.location.search;
     }
-    window.onload = openVaneApp;
+    window.onload = function () {
+      openVaneApp();
+      // Reserve hvis nettleseren blokkerer automatisk åpning av appen
+      setTimeout(function () {
+        var b = document.getElementById('open-app');
+        b.href = "vane://linkedin-callback" + window.location.search;
+        b.classList.add('show');
+      }, 1500);
+    };
   </script>
 </head>
 <body>
@@ -45,6 +55,7 @@
     <div class="spinner"></div>
     <h2>Åpner Vane-appen …</h2>
     <p>Vennligst vent mens vi fullfører din LinkedIn-tilkobling.</p>
+    <a id="open-app" class="btn" href="#">Åpne Vane</a>
   </div>
 </body>
 </html>

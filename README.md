@@ -90,3 +90,5 @@ Siden startet som FTP-hostet statisk HTML hos Webhuset, og ble migrert til GitHu
 _Sist synkronisert med GitHub-repoene 26. august 2026 — alle 9 prosjekter, README-er gjennomgått, utdaterte Replit-lenker fjernet til fordel for faktiske produksjons-URL-er._
 
 _15. oktober 2026: la til `trendunpacked/privacy/` — egen personvernside for Trend Unpacked, kreves av Google Cloud Console (Branding-siden i OAuth-samtykkeskjermen) for kanalens opplastings-tjeneste. Samme mal som `vane/privacy/`._
+
+_15. oktober 2026 (samme dag, oppfølging): la til `trendunpacked/` som egen hjemmeside (`Application home page`) for samme OAuth-integrasjon — Google krever at hjemmesiden tydelig beskriver appens funksjon og lenker til personvernerklæringen; den generelle forsiden (`mythso.no`) er en personlig portefølje og dekket ikke det kravet._

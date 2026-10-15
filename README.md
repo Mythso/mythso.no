@@ -20,7 +20,8 @@ mythso.no/
 ├── CV_2026.pdf                # Nedlastbar CV
 ├── favicon.svg / safari-pinned-tab.svg
 ├── CNAME                        # GitHub Pages custom domain-fil (inneholder "mythso.no")
-└── Gravid_App/, statistikk/        # Statiske undersider for enkeltprosjekter
+├── Gravid_App/, statistikk/        # Statiske undersider for enkeltprosjekter
+└── <slug>/privacy/             # Personvernside pr. prosjekt der Google/App Store krever det (f.eks. vane/privacy, trendunpacked/privacy)
 ```
 
 ### Hvordan sidene henger sammen
@@ -83,7 +84,9 @@ Siden startet som FTP-hostet statisk HTML hos Webhuset, og ble migrert til GitHu
 | GarasjePortalen | Internportal, eget domene (htgp.no) under utrulling | – |
 | Cairn | Internt/privat verktøy | – |
 | Sermo | Under utvikling (mobilapp) | – |
-| Trend Unpacked | Live | https://www.youtube.com/@trendunpacked |
+| Trend Unpacked | Live | https://www.youtube.com/@trendunpacked ([personvern](https://mythso.no/trendunpacked/privacy/)) |
 | OppvekstNorge | Domene reservert (oppvekstnorge.no), MVP under arbeid | – |
 
 _Sist synkronisert med GitHub-repoene 26. august 2026 — alle 9 prosjekter, README-er gjennomgått, utdaterte Replit-lenker fjernet til fordel for faktiske produksjons-URL-er._
+
+_15. oktober 2026: la til `trendunpacked/privacy/` — egen personvernside for Trend Unpacked, kreves av Google Cloud Console (Branding-siden i OAuth-samtykkeskjermen) for kanalens opplastings-tjeneste. Samme mal som `vane/privacy/`._

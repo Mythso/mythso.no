@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Personvernerklæring – Trend Unpacked</title>
+  <meta name="description" content="Personvernerklæring for Trend Unpacked">
+  <link rel="canonical" href="https://mythso.no/trendunpacked/privacy/">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0b0c10">
+  <meta name="theme-color" content="#ffffff">
+
+  <style>
+    :root{
+      --bg:#f7f8fa; --panel:#ffffff; --text:#161821; --muted:#667085;
+      --brand:#3b6fe0; --brand2:#2fd48a; --border:rgba(16,24,40,.10); --r:16px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial;
+      color:var(--text);background:var(--bg);
+    }
+    .wrap{width:min(760px,92%);margin:0 auto;padding:28px 0 60px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:clamp(20px,4vw,36px);margin-top:22px}
+    h1{font-size:clamp(26px,4.5vw,34px);margin:.2em 0}
+    h2{font-size:20px;margin:1.6em 0 .5em}
+    p,li{line-height:1.65}
+    .muted{color:var(--muted)}
+    .updated{font-size:14px;color:var(--muted);margin-top:6px}
+    ul{padding-left:1.2em}
+    .pill{display:inline-block;padding:4px 10px;border:1px solid var(--border);border-radius:999px;font-size:13px;color:var(--muted);margin-bottom:8px}
+    a{color:var(--brand)}
+  </style>
+
+  <script src="/config.js"></script>
+  <script src="/common.js"></script>
+</head>
+<body>
+  <main class="wrap">
+    <article class="card">
+      <span class="pill">Trend Unpacked</span>
+      <h1>Personvernerklæring</h1>
+      <p class="updated">Sist oppdatert: 15. oktober 2026</p>
+
+      <p>Trend Unpacked («vi», «oss» eller «kanalen») er en automatisert innholdskanal på YouTube (<a href="https://www.youtube.com/@trendunpacked">@trendunpacked</a>), driftet av Thomas Myklebust Soleng. Denne personvernerklæringen beskriver hvordan Google-kontodata behandles når kanalens egen opplastingstjeneste kobler seg til YouTube Data API via Google OAuth 2.0 for å administrere kanalens videoer.</p>
+
+      <p><strong>Behandlingsansvarlig:</strong> Thomas Myklebust Soleng (<a href="/">mythso.no</a>).</p>
+
+      <h2>1. Hva tjenesten er</h2>
+      <p>Trend Unpacked publiseres av en automatisert pipeline som finner og researcher aktuelle temaer, genererer narrasjon og bilder med AI-verktøy, og bygger og laster opp korte videoer til kanalens egen YouTube-kanal. Videoer som inneholder AI-generert narrasjon eller annet syntetisk innhold merkes som dette ved opplasting, i tråd med YouTubes retningslinjer for syntetisk/endret innhold. Det er ingen andre brukere av tjenesten enn kanaleieren selv.</p>
+
+      <h2>2. Google-tilgang og omfang (OAuth)</h2>
+      <p>Tjenesten bruker Googles OAuth 2.0 til å få et begrenset sett tilganger til YouTube Data API v3, utelukkende knyttet til kanalen Trend Unpacked (kanal-ID <code>UCUYiIcxsKks1KcO-xivd-Lg</code>). Tilgangen brukes kun til å:</p>
+      <ul>
+        <li>laste opp nye videoer til kanalen,</li>
+        <li>sette tittel, beskrivelse, kategori og status (inkl. AI-innhold-merking) på egne opplastede videoer,</li>
+        <li>lese kanalens egen video- og statistikkdata (f.eks. visninger, abonnenter, publiserte videoer) for intern måling og kvalitetssikring.</li>
+      </ul>
+      <p>Det hentes eller behandles aldri data fra andre YouTube-kanaler, andre Google-kontoer, eller andre brukeres personlige informasjon.</p>
+
+      <h2>3. Lagring og sikkerhet</h2>
+      <p>Google-tilgangstokenet (refresh token) lagres som en kryptert miljøvariabel i en dedikert, passordbeskyttet mikrotjeneste driftet av kanaleieren. Tokenet er ikke tilgjengelig for tredjeparter, og brukes kun av denne ene tjenesten til å kommunisere direkte med Googles egne API-er.</p>
+
+      <h2>4. Deling av data</h2>
+      <p>Vi selger, deler eller overfører aldri Google- eller YouTube-data til tredjeparter. All bruk er begrenset til drift av Trend Unpacked sin egen kanal, i tråd med Googles API Services User Data Policy, inkludert kravene til begrenset bruk («Limited Use»).</p>
+
+      <h2>5. Dine rettigheter</h2>
+      <p>Siden den eneste autoriserte brukeren av denne integrasjonen er kanaleieren selv, kan tilgangen når som helst trekkes tilbake via Googles kontoinnstillinger på <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+
+      <h2>6. Endringer i personvernerklæringen</h2>
+      <p>Vi kan oppdatere denne personvernerklæringen fra tid til annen. Eventuelle endringer publiseres på denne siden med ny dato for siste oppdatering.</p>
+
+      <h2>7. Kontakt oss</h2>
+      <p>Hvis du har spørsmål om denne personvernerklæringen, kan du kontakte oss på:</p>
+      <ul>
+        <li><strong>E-post:</strong> <a href="mailto:thosol@mythso.no">thosol@mythso.no</a></li>
+        <li><strong>Nettside:</strong> <a href="https://mythso.no">mythso.no</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => { window.renderChrome?.(); });
+  </script>
+</body>
+</html>

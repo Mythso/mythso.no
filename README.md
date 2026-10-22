@@ -20,7 +20,7 @@ mythso.no/
 ├── CV_2026.pdf                # Nedlastbar CV
 ├── favicon.svg / safari-pinned-tab.svg
 ├── CNAME                        # GitHub Pages custom domain-fil (inneholder "mythso.no")
-├── Gravid_App/, statistikk/        # Statiske undersider for enkeltprosjekter
+├── Gravid_App/, statistikk/, garasjeportalen/  # Statiske undersider for enkeltprosjekter
 └── <slug>/privacy/             # Personvernside pr. prosjekt der Google/App Store krever det (f.eks. vane/privacy, trendunpacked/privacy)
 ```
 
@@ -81,7 +81,7 @@ Siden startet som FTP-hostet statisk HTML hos Webhuset, og ble migrert til GitHu
 | Sievoo | Live | https://sievoo.com |
 | Medarbeiderpuls | Live | https://www.medarbeiderpuls.no |
 | TryggNett | Under utvikling (mobilapp) | – |
-| GarasjePortalen | Internportal, eget domene (htgp.no) under utrulling | – |
+| GarasjePortalen | Avsluttet okt. 2026 — case-side i porteføljen | https://mythso.no/garasjeportalen/ |
 | Cairn | Internt/privat verktøy | – |
 | Sermo | Under utvikling (mobilapp) | – |
 | Trend Unpacked | Live | https://www.youtube.com/@trendunpacked ([personvern](https://mythso.no/trendunpacked/privacy/)) |
@@ -92,3 +92,5 @@ _Sist synkronisert med GitHub-repoene 26. august 2026 — alle 9 prosjekter, REA
 _15. oktober 2026: la til `trendunpacked/privacy/` — egen personvernside for Trend Unpacked, kreves av Google Cloud Console (Branding-siden i OAuth-samtykkeskjermen) for kanalens opplastings-tjeneste. Samme mal som `vane/privacy/`._
 
 _15. oktober 2026 (samme dag, oppfølging): la til `trendunpacked/` som egen hjemmeside (`Application home page`) for samme OAuth-integrasjon — Google krever at hjemmesiden tydelig beskriver appens funksjon og lenker til personvernerklæringen; den generelle forsiden (`mythso.no`) er en personlig portefølje og dekket ikke det kravet._
+
+_22. oktober 2026: la til `garasjeportalen/` — case-side for GarasjePortalen etter at utviklingen ble stoppet (styret i borettslaget valgte en enklere løsning). Skjermbilder i `garasjeportalen/img/` er tatt fra en lokal kopi med fiktive testdata. Prosjektkortet på forsiden lenker nå til case-siden i stedet for htgp.no._

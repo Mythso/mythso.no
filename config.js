@@ -33,9 +33,9 @@ window.siteConfig = {
     {
       icon: "🚗",
       title: "GarasjePortalen",
-      description: "Internportal for garasjelaget ved Heggedal Terrasse borettslag. Beboere logger inn med personlig plasskode og rapporterer hendelser; administratorer får full oversikt med statistikk og CSV-eksport.",
-      link: "https://htgp.no",
-      linkLabel: "Besøk siden →"
+      description: "Driftsportal for to automatiske garasjeanlegg i et borettslag: sanntidsstatus, hendelseslogg, automatisk stopplogg og varsling. Avsluttet etter at styret valgte en enklere løsning.",
+      link: "/garasjeportalen/",
+      linkLabel: "Les caset →"
     },
     {
       icon: "🎬",

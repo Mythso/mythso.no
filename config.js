@@ -33,7 +33,7 @@ window.siteConfig = {
     {
       icon: "🚗",
       title: "GarasjePortalen",
-      description: "Driftsportal for to automatiske garasjeanlegg i et borettslag: sanntidsstatus, hendelseslogg, automatisk stopplogg og varsling. Avsluttet etter at styret valgte en enklere løsning.",
+      description: "Driftsportal for to automatiske garasjeanlegg i et borettslag: sanntidsstatus, hendelseslogg, automatisk stopplogg og varsling. Avsluttet etter at styret valgte å lage en enklere løsning selv.",
       link: "/garasjeportalen/",
       linkLabel: "Les caset →"
     },

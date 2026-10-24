@@ -56,9 +56,14 @@
     figure img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--border);box-shadow:0 8px 24px rgba(16,24,40,.08);background:#fff}
     figcaption{font-size:13.5px;color:var(--muted);margin-top:10px;line-height:1.5}
     .wide{max-width:none}
-    .duo{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:24px;align-items:start;margin:24px 0 28px}
-    .duo figure{margin:0}
-    @media (max-width:640px){.duo{grid-template-columns:1fr}}
+    .hero{margin:28px 0 8px;padding:clamp(16px,4vw,36px);border-radius:14px;background:linear-gradient(135deg,#f3ece6,#e9eef7);border:1px solid var(--border)}
+    .hero img{max-width:560px;margin:0 auto}
+    .hero figcaption{text-align:center}
+    .phones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:24px 0 10px;padding:clamp(14px,3vw,28px);border-radius:14px;background:var(--panel-2);border:1px solid var(--border)}
+    .phones figure{margin:0}
+    .phones img{border-radius:18px}
+    .phones-caption{font-size:13.5px;color:var(--muted);margin:0 0 28px;line-height:1.5}
+    @media (max-width:640px){.phones{grid-template-columns:1fr 1fr}.phones figure:last-child{display:none}}
 
     .stack{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:12px 0 18px}
     .stack div{background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.45}
@@ -87,6 +92,11 @@
         <li class="ended">Utvikling stoppet oktober 2026</li>
       </ul>
 
+      <figure class="hero">
+        <img src="img/forside.webp" width="1200" height="1217" alt="Forsiden til portalen med borettslagets logo, en driftsmelding øverst, status for BK1 og BK2 og innlogging for beboere og admin.">
+        <figcaption>Forsiden. Status for begge anlegg vises før innlogging, så alle kan sjekke garasjen raskt.</figcaption>
+      </figure>
+
       <article>
         <h2>Problemet</h2>
         <p>Borettslaget har to semiautomatiske garasjeanlegg med til sammen 171 plasser: BK1 med 81 og BK2 med 90. Bilene står på plattformer som anlegget flytter selv. Det er plassbesparende, men når et anlegg stopper, sitter bilen fast til en tekniker har vært der.</p>
@@ -110,16 +120,17 @@
         </ul>
       </article>
 
-      <div class="duo">
-        <figure>
-          <img src="img/dashboard-mobil.webp" width="780" height="1688" loading="lazy" alt="Dashboardet på mobil med driftsmelding, statuskort for BK1 og BK2 og starten på skjemaet for å melde hendelse.">
-          <figcaption>På mobil, der de fleste faktisk brukte den.</figcaption>
-        </figure>
-        <figure>
-          <img src="img/logg-statistikk.webp" width="1400" height="1180" loading="lazy" alt="Statistikk med søylediagrammer over hendelser per dag, avvik per anlegg, advarsel mot stans og hyppigste meldinger.">
-          <figcaption>Hendelsesloggen med statistikk: hendelser per dag, avvik per anlegg, advarsel mot stans og de hyppigste meldingene.</figcaption>
-        </figure>
+      <div class="phones">
+        <figure><img src="img/forside-mobil.webp" width="780" height="1688" loading="lazy" alt="Forsiden på mobil med logo, status og innlogging."></figure>
+        <figure><img src="img/dashboard-mobil.webp" width="780" height="1688" loading="lazy" alt="Dashboardet på mobil med statuskort for BK1 og BK2 og skjema for å melde hendelse."></figure>
+        <figure><img src="img/kart-mobil.webp" width="780" height="1688" loading="lazy" alt="Plasskartet på mobil med søylene i BK1."></figure>
       </div>
+      <p class="phones-caption">På mobil, der de fleste faktisk brukte portalen: forsiden, dashboardet og plasskartet.</p>
+
+      <figure class="wide">
+        <img src="img/logg-statistikk.webp" width="1400" height="1180" loading="lazy" alt="Statistikk med søylediagrammer over hendelser per dag, avvik per anlegg, advarsel mot stans og hyppigste meldinger.">
+        <figcaption>Hendelsesloggen med statistikk: hendelser per dag, avvik per anlegg, advarsel mot stans og de hyppigste meldingene.</figcaption>
+      </figure>
 
       <article>
         <p>Etter hvert kom flere funksjoner til: et plasskart over alle søylene i begge anlegg, en markedsplass for utleie og salg av plasser mellom beboere, en infoside med ordensregler, driftsmeldinger som banner, og et adminpanel der styret kan låse status slik at beboere ikke overstyrer den.</p>
@@ -128,6 +139,11 @@
       <figure class="wide">
         <img src="img/kart.webp" width="1600" height="1126" loading="lazy" alt="Plasskart for BK1 og BK2 der hver mørk boks er en søyle med tre plassnumre, med markering for el-lader, til leie, utleid og til salgs.">
         <figcaption>Plasskartet speiler skiltingen i garasjen. Plasser med el-lader, plasser til leie og plasser til salgs er markert.</figcaption>
+      </figure>
+
+      <figure class="wide">
+        <img src="img/marked.webp" width="1600" height="723" loading="lazy" alt="Markedsplassen med annonser for utleie og salg av garasjeplasser og et skjema for ny annonse.">
+        <figcaption>Markedsplassen. Beboere kan leie ut eller selge plassen sin til naboer, og annonsene vises også i plasskartet.</figcaption>
       </figure>
 
       <figure class="wide">

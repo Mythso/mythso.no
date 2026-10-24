@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Language" content="no">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GarasjePortalen – mythso</title>
-  <meta name="description" content="Case: en driftsportal for to automatiske garasjeanlegg i et borettslag. Hva jeg bygde, hvordan, og hva jeg lærte da styret valgte en enklere løsning.">
+  <meta name="description" content="Case: en driftsportal for to automatiske garasjeanlegg i et boligsameie. Hva jeg bygde, hvordan, og hva jeg lærte da styret valgte en enklere løsning.">
 
   <meta property="og:title" content="GarasjePortalen – en driftsportal for robotgarasjer">
   <meta property="og:description" content="Hva jeg bygde, hvordan, og hva jeg lærte da styret valgte en enklere løsning.">
@@ -84,23 +84,25 @@
       <a class="back" href="/">← Tilbake til porteføljen</a>
       <p class="tagline">Case · Avsluttet prosjekt</p>
       <h1>GarasjePortalen</h1>
-      <p class="lede">En driftsportal for to automatiske garasjeanlegg i et borettslag. Beboerne skulle vite om garasjen virket før de gikk ned for å hente bilen, og styret skulle få dokumentasjon på hver driftsstans.</p>
+      <p class="lede">En driftsportal for to automatiske garasjeanlegg i et boligsameie. Beboerne skulle vite om garasjen virket før de gikk ned for å hente bilen, og styret skulle få dokumentasjon på hver driftsstans.</p>
       <ul class="meta">
         <li>2026</li>
         <li>Rolle: eneste utvikler</li>
-        <li>Heggedal Terrasse borettslag</li>
+        <li>Heggedal Terrasse Boligsameie</li>
         <li class="ended">Utvikling stoppet oktober 2026</li>
       </ul>
 
       <figure class="hero">
-        <img src="img/forside.webp" width="1200" height="1217" alt="Forsiden til portalen med borettslagets logo, en driftsmelding øverst, status for BK1 og BK2 og innlogging for beboere og admin.">
+        <img src="img/forside.webp" width="1200" height="1217" alt="Forsiden til portalen med sameiets logo, en driftsmelding øverst, status for BK1 og BK2 og innlogging for beboere og admin.">
         <figcaption>Forsiden. Status for begge anlegg vises før innlogging, så alle kan sjekke garasjen raskt.</figcaption>
       </figure>
 
       <article>
-        <h2>Problemet</h2>
-        <p>Borettslaget har to semiautomatiske garasjeanlegg med til sammen 171 plasser: BK1 med 81 og BK2 med 90. Bilene står på plattformer som anlegget flytter selv. Det er plassbesparende, men når et anlegg stopper, sitter bilen fast til en tekniker har vært der.</p>
-        <p>Før portalen fikk de fleste vite om en stans først når de sto ved porten. Informasjonen spredte seg via naboprat og meldinger, og ingen hadde en samlet oversikt over hvor ofte anleggene faktisk sto, eller hvor lenge.</p>
+        <h2>Bakgrunnen</h2>
+        <p>Sameiet har to semiautomatiske garasjeanlegg med til sammen 171 plasser: BK1 med 81 og BK2 med 90. Bilene står på plattformer som anlegget flytter selv. Det er plassbesparende, men når et anlegg stopper, sitter bilen fast til en tekniker har vært der.</p>
+        <p>Anleggene stoppet ofte. En uavhengig teknisk inspeksjon høsten 2025 gikk gjennom alarmloggene og fant at oppetiden lå vesentlig under 99,9 prosent, som rapporten brukte som rimelig referansenivå for stabil drift. Rapporten pekte også på lav kapasitet, mangelfull dokumentasjon og flere avvik fra standarden anlegget er bygget etter.</p>
+        <p>Dermed handlet det om mer enn å vite om garasjen virket. Garasjeeierne hadde en pågående reklamasjonssak, og hver stans måtte dokumenteres med dato, anlegg, nedetid fra og til, og årsak. Den dokumentasjonen fantes ikke samlet noe sted. Informasjonen spredte seg via naboprat og meldinger, og de fleste fikk vite om en stans først når de sto ved porten.</p>
+        <p>På årsmøtet i april 2026 ble det fremmet forslag om at styringsgruppa for garasjeeierne skulle skaffe et eget kommunikasjonsverktøy for eierne av parkeringsplassene. Årsmøtet vedtok å undersøke det videre. Portalen var mitt svar på det.</p>
 
         <h2>Løsningen</h2>
         <p>Portalen samlet tre ting på ett sted: status i sanntid, en felles logg over hendelser, og et verktøy for styret.</p>
@@ -161,22 +163,36 @@
         </div>
         <p>Prosjektet er en pnpm-monorepo med en felles OpenAPI-spesifikasjon som genererer Zod-validering for backend og React Query-hooks for frontend. Det startet på Replit og ble flyttet til Railway og Supabase underveis, med eget domene.</p>
         <ul>
-          <li><strong>Sikkerhet:</strong> passord hashes med scrypt, admin-koder lagres bare som hash, og innlogging er rate-begrenset.</li>
           <li><strong>Backup:</strong> gratisnivået hos både Supabase og Railway mangler automatisk backup. Løsningen ble en full eksport og import av hele databasen fra adminpanelet, verifisert med en komplett rundtur uten datatap.</li>
           <li><strong>Språk:</strong> norsk som standard, med engelsk som valg.</li>
         </ul>
         <p>Det meste ble bygget sammen med Claude via MCP-koblinger mot GitHub, Supabase og Railway, og hver endring ble testet direkte i produksjon med testdata som ble ryddet bort etterpå.</p>
 
+        <h2>Sikkerhet og personvern</h2>
+        <p>Portalen håndterte innlogging og kontaktinfo for naboer, så sikkerhet og personvern var med fra starten:</p>
+        <ul>
+          <li><strong>Passord:</strong> hashes med scrypt og eget salt per bruker. Sammenligning skjer i konstant tid, så svartiden ikke røper noe.</li>
+          <li><strong>Admin-koder og innlogginger:</strong> lagres bare som SHA-256-hash, aldri i klartekst. Styret kan generere nye koder selv.</li>
+          <li><strong>Vern mot gjetting:</strong> maks ti innloggingsforsøk per IP-adresse per kvarter.</li>
+          <li><strong>Tilgangsstyring:</strong> beboere og admin har adskilte rettigheter. Styret kan sperre en konto, som da logges ut med en gang, og nullstille passord. Status satt av styret kan ikke overstyres av beboere.</li>
+          <li><strong>Dataminimering:</strong> beboere identifiseres med plasskode, ikke navn. Telefon, bilnummer og adresse er frivillig og brukes bare når beboeren selv velger det, for eksempel i en annonse.</li>
+          <li><strong>Informasjonskapsler:</strong> portalen brukte bare det som var nødvendig for innlogging, ingen sporing eller reklame, og opplyste om dette på hver side.</li>
+          <li><strong>Logger og backup:</strong> innloggingsdata fjernes fra serverloggene. Sikkerhetskopien tar med alle data, men utelater innloggingsnøkler, og gjenoppretting krever eksplisitt bekreftelse.</li>
+          <li><strong>Filopplasting:</strong> størrelsesgrense på bilder og vedlegg, og bare PDF er tillatt for dokumenter.</li>
+          <li><strong>Eksport:</strong> CSV-eksport av hendelser og stopplogg, så dokumentasjonen kan brukes videre i reklamasjonssaken uavhengig av portalen.</li>
+        </ul>
+        <p>Én avveining var bevisst: Som standard kunne beboere logge inn med plasskoden alene, siden tilliten i sameiet er høy og terskelen skulle være lav. Hver beboer kunne sette et eget passord, og styret kunne kreve det om trusselbildet endret seg.</p>
+
         <h2>Utfallet</h2>
-        <p>Årsmøtet i 2026 hadde allerede gitt styringsgruppa i oppdrag å skaffe et kommunikasjonsverktøy for garasjeeierne. Jeg sendte en demo og et pristilbud på 449 kr i måneden i august. Tilbakemeldingen var god: verktøyet ble beskrevet som gjennomtenkt, og prisen som overkommelig.</p>
+        <p>Med årsmøtets vedtak som utgangspunkt sendte jeg en demo og et pristilbud på 449 kr i måneden i august. Tilbakemeldingen var god: verktøyet ble beskrevet som gjennomtenkt, og prisen som overkommelig.</p>
         <p>Problemet var budsjettet. Styret ville vente med nye kostnader til garasjeregnskapet var på plass. Jeg tilbød en kostnadsfri pilotperiode, men saken ble liggende. I oktober valgte styret i stedet å lage en egen, enklere app med ferdige knapper for kø og feil, push-varsler og en lenke for frivillig Vipps-bidrag.</p>
-        <p>Jeg vurderte å selge portalen videre til andre borettslag, men markedet er lite, og styrer har gratisalternativer gjennom forvalteren. Derfor stoppet jeg utviklingen og lar prosjektet stå her som et case.</p>
+        <p>Jeg vurderte å selge portalen videre til andre sameier og borettslag, men markedet er lite, og styrer har gratisalternativer gjennom forvalteren. Derfor stoppet jeg utviklingen og lar prosjektet stå her som et case.</p>
 
         <h2>Hva jeg lærte</h2>
         <ol class="lessons">
           <li><strong>Kjøperen er ikke brukeren.</strong> Beboerne bruker portalen, men styret betaler, og styret må forholde seg til regnskap, vedtak og fellesutgifter.</li>
           <li><strong>Push-varsel slår funksjonsliste.</strong> Det viktigste for beboerne var ett varsel på telefonen. Plasskart og markedsplass var hyggelig, men ikke det som avgjorde.</li>
-          <li><strong>Betalingsvilje er ikke det samme som budsjett.</strong> Styringsgruppa ville ha verktøyet og syntes prisen var rimelig, men pengene var ikke satt av. I et borettslag må en ny utgift inn i budsjettet, og det skjer gjerne først ved neste årsmøte.</li>
+          <li><strong>Betalingsvilje er ikke det samme som budsjett.</strong> Styringsgruppa ville ha verktøyet og syntes prisen var rimelig, men pengene var ikke satt av. I et sameie må en ny utgift inn i budsjettet, og det skjer gjerne først ved neste årsmøte.</li>
           <li><strong>Avtal vilkår før du gir full tilgang.</strong> Når kunden har sett hele løsningen, kan de like gjerne lage en enklere variant selv. En begrenset demo og en avtale om pilot burde kommet før full tilgang.</li>
           <li><strong>Den egentlige verdien var dokumentasjon.</strong> Stopploggen med tidspunkt og varighet er det en enkel knappe-app ikke gir. Hadde jeg startet på nytt, hadde jeg ledet med det.</li>
         </ol>
